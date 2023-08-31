@@ -11,3 +11,9 @@
   justify-self: right;
   text-decoration: none;
 }
+
+@media screen and (max-width: 1023px) {
+  .linked-text__link {
+    font-size: 28px;
+  }
+}

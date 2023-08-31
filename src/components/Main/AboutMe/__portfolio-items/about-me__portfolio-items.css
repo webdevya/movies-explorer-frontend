@@ -6,3 +6,10 @@
   padding: 0;
   row-gap: 14px;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-me__portfolio-items {
+    margin-top: 44px;
+    row-gap: 14px;
+  }
+}

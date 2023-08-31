@@ -15,3 +15,9 @@
   flex-direction: column;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-project {
+    padding: 90px 50px 76px;
+  }
+}
