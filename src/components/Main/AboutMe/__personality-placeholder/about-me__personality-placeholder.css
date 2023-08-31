@@ -5,3 +5,10 @@
   padding: 0;
   flex-wrap: wrap-reverse;
 }
+
+@media screen and (max-width: 767px) {
+  .about-me__personality-placeholder {
+    margin-top: 60px;
+    gap: 40px;
+  }
+}

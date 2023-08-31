@@ -12,3 +12,9 @@
   line-height: normal;
   text-decoration: none;
 }
+
+@media screen and (max-width: 767px) {
+  .footer__link {
+    font-size: 12px;
+  }
+}

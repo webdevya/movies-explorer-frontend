@@ -6,4 +6,16 @@
   margin: 20px 0 0;
   padding: 20px 0 0;
   column-gap: 20px;
+
+}
+
+@media screen and (max-width: 767px) {
+  .footer__line {
+    padding: 30px 10px 0;
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: center;
+    margin-top: 21px;
+
+  }
 }

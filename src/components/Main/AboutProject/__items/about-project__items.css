@@ -6,3 +6,10 @@
   padding: 0;
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 767px) {
+  .about-project__items {
+    margin-top: 60px;
+    row-gap: 57px;
+  }
+}

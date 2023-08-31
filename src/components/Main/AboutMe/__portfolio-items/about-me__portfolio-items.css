@@ -10,6 +10,12 @@
 @media screen and (max-width: 1023px) {
   .about-me__portfolio-items {
     margin-top: 44px;
-    row-gap: 14px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me__portfolio-items {
+    margin-top: 40px;
+    row-gap: 20px;
   }
 }

@@ -10,3 +10,12 @@
   padding: 14px 0;
   box-sizing: border-box;
 }
+
+
+@media screen and (max-width: 767px) {
+  .about-project__time-line-item-desc {
+    font-size: 11px;
+    line-height: normal;
+    padding: 11px 0;
+  }
+}

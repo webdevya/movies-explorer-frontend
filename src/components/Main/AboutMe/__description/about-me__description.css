@@ -21,3 +21,10 @@
     margin-top: 20px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .about-me__description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

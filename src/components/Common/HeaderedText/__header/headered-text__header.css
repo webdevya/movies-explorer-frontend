@@ -9,3 +9,10 @@
   line-height: normal;
   letter-spacing: -0.8px;
 }
+
+@media screen and (max-width: 767px) {
+  .headered-text__header {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}

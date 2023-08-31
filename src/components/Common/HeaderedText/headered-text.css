@@ -8,3 +8,9 @@
   flex-direction: column;
   row-gap: 21px;
 }
+
+@media screen and (max-width: 767px) {
+  .headered-text {
+    row-gap: 17px;
+  }
+}

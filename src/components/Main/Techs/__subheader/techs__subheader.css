@@ -16,3 +16,13 @@
     margin-top: 80px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .techs__subheader {
+    margin-top: 60px;
+
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+}

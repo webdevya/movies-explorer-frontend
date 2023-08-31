@@ -3,11 +3,17 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
-  width: 600px;
+  max-width: 600px;
 }
 
 @media screen and (max-width: 1023px) {
   .about-me__personality-text-placeholder {
     width: 364px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me__personality-text-placeholder {
+    width: auto;
   }
 }

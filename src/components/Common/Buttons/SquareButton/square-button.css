@@ -16,3 +16,11 @@
   padding: 0;
 
 }
+
+@media screen and (max-width: 767px) {
+  .square-button {
+    font-size: 10px;
+    height: 26px;
+    width: 54px;
+  }
+}
