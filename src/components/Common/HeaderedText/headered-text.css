@@ -1,0 +1,10 @@
+@import url(./__header/headered-text__header.css);
+@import url(./__text/headered-text__text.css);
+
+.headered-text {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 26px;
+}

@@ -1,0 +1,19 @@
+.rounded-button {
+  width: 100px;
+  height: 32px;
+  border-radius: 20px;
+  background: #313131;
+
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  /* 114.286% */
+
+  text-align: center;
+
+  margin: 0;
+  padding: 0;
+}

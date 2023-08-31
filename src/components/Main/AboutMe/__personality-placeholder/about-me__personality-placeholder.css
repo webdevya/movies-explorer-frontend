@@ -1,0 +1,7 @@
+.about-me__personality-placeholder {
+  margin: 66px 0 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  flex-wrap: wrap-reverse;
+}

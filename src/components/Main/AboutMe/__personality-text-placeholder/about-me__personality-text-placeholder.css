@@ -1,0 +1,7 @@
+.about-me__personality-text-placeholder {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 600px;
+}

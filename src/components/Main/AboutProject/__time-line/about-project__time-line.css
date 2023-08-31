@@ -1,0 +1,13 @@
+.about-project__time-line {
+  display: grid;
+
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 36px 45px;
+  grid-template-areas:
+    "step1 step2"
+    "desc1 desc2";
+
+  margin: 110px 0 0;
+  padding: 0;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+.about-me__portfolio-header {
+  color: #8B8B8B;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  /* 111.111% */
+
+  margin: 101px 0 0;
+}

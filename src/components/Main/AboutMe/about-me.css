@@ -1,0 +1,18 @@
+@import url(./__description/about-me__description.css);
+@import url(./__link/about-me__link.css);
+@import url(./__name/about-me__name.css);
+@import url(./__personality-image/about-me__personality-image.css);
+@import url(./__personality-placeholder/about-me__personality-placeholder.css);
+@import url(./__personality-text-placeholder/about-me__personality-text-placeholder.css);
+@import url(./__profession/about-me__profession.css);
+@import url(./__portfolio-header/about-me__portfolio-header.css);
+@import url(./__portfolio-items/about-me__portfolio-items.css);
+@import url(./__portfolio-item/about-me__portfolio-item.css);
+
+.about-me {
+  margin: 0;
+  padding: 110px 70px 125px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}

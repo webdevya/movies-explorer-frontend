@@ -1,0 +1,9 @@
+.footer__line {
+  display: flex;
+  justify-content: space-between;
+
+  border-top: 1px solid #424242;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+  column-gap: 20px;
+}

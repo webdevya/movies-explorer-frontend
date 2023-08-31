@@ -1,0 +1,14 @@
+.about-me__description {
+  padding: 0;
+  margin: 26px 0 0;
+
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  /* 157.143% */
+
+  flex: 1;
+}

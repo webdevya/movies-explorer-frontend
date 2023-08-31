@@ -1,0 +1,5 @@
+.header__menu-placeholder {
+  display: flex;
+  column-gap: 16px;
+  margin: 28px 0;
+}

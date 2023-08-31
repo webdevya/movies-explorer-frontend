@@ -1,0 +1,13 @@
+.linked-text__link {
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 60px;
+  /* 200% */
+  letter-spacing: -1.2px;
+  justify-self: right;
+  text-decoration: none;
+}

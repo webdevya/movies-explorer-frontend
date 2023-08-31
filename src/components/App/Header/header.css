@@ -1,0 +1,13 @@
+@import url(./__auth-menu-placeholder/header__auth-menu-placeholder.css);
+@import url(./__logo/header__logo.css);
+@import url(./__logo/header__logo_with-img.css);
+@import url(./__menu-placeholder/header__menu-placeholder.css);
+@import url(./header-account-placeholder/header-account-placeholder.css);
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 74px;
+  margin: 0 70px;
+  position: relative;
+}

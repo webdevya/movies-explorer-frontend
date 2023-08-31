@@ -1,0 +1,7 @@
+.about-me__personality-image {
+  width: 270px;
+  height: 327px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}

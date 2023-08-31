@@ -1,0 +1,17 @@
+.techs__item {
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+
+  width: 90px;
+  border-radius: 10px;
+  background: #303030;
+  text-align: center;
+  margin: auto;
+  padding: 21px 0 22px;
+  box-sizing: border-box;
+}

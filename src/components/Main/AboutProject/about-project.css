@@ -1,0 +1,17 @@
+@import url(./__items/about-project__items.css);
+@import url(./__item/about-project__item.css);
+@import url(./__time-line/about-project__time-line.css);
+@import url(./__time-line-item/about-project__time-line-item.css);
+@import url(./__time-line-item/_step/about-project__time-line-item_step_1.css);
+@import url(./__time-line-item/_step/about-project__time-line-item_step_2.css);
+@import url(./__time-line-item-desc/about-project__time-line-item-desc.css);
+@import url(./__time-line-item-desc/_step/about-project__time-line-item-desc_step_1.css);
+@import url(./__time-line-item-desc/_step/about-project__time-line-item-desc_step_2.css);
+
+.about-project {
+  margin: 0;
+  padding: 110px 70px 96px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}

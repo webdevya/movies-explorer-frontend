@@ -1,0 +1,8 @@
+.about-project__items {
+  margin: 70px 0 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}

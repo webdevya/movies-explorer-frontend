@@ -1,0 +1,13 @@
+@import url(./_underlined/linked_text_underlined.css);
+@import url(./__text/linked-text__text.css);
+@import url(./__link/linked-text__link.css);
+
+.linked-text {
+  display: grid;
+  grid-template-columns: auto 70px;
+  column-gap: 10px;
+  min-height: 75px;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+}
