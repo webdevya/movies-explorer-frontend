@@ -1,0 +1,7 @@
+.square-button_type_small-image-delete {
+  width: 21px;
+  height: 21px;
+  border: 0;
+  background-color: transparent;
+  background-image: url("../../../../../images/delete-btn.svg");
+}

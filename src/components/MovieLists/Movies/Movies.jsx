@@ -1,9 +1,10 @@
 import React from 'react';
-import { CurrentMoviesContext } from "../../contexts/CurrentMoviesContext";
+import { CurrentMoviesContext } from "../../../contexts/CurrentMoviesContext";
 import './movies.css'
-import SearchForm from './SearchForm/SearchForm';
-import MoviesCardList from './MoviesCardList/MoviesCardList';
-import SquareButton from '../Common/Buttons/SquareButton/SquareButton'
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SquareButton from '../../Common/Buttons/SquareButton/SquareButton'
+import CardButtons from '../MovieButtons/CardButtons/CardButtons';
 
 function Movies({ tmpOnLoad }) {
 
@@ -16,6 +17,14 @@ function Movies({ tmpOnLoad }) {
     console.log(card);
   }
 
+  const cardButtons = ({ card, onBtnClick, isHovered }) => {
+    return (<CardButtons
+      card={card}
+      onBtnClick={onBtnClick}
+      isHovered={isHovered}
+    />)
+  };
+
   //tmpOnLoad();
   return (
     <main className="movies">
@@ -23,6 +32,7 @@ function Movies({ tmpOnLoad }) {
       <MoviesCardList
         onCardLike={onCardLike}
         cards={currentMovies}
+        cardButtons={cardButtons}
       />
       <div className='movies-more'>
         <SquareButton

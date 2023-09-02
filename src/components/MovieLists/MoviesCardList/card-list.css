@@ -4,6 +4,9 @@
   margin: 10px 0 0 0;
   padding: 70px 0 28px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
 
 @media screen and (max-width: 1023px) {

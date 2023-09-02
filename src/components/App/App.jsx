@@ -1,7 +1,7 @@
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
+import Movies from '../MovieLists/Movies/Movies';
 // import Main from './Main';
 // import ImagePopup from './ImagePopup';
 // import EditProfilePopup from './EditProfilePopup';
@@ -21,6 +21,7 @@ import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { CurrentMoviesContext } from '../../contexts/CurrentMoviesContext';
+import SavedMovies from '../MovieLists/SavedMovies/SavedMovies';
 
 function App() {
 
@@ -54,31 +55,31 @@ function App() {
         "url": "https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg"
       }
     },
-    {
-      "id": 3,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-    {
-      "id": 4,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 5,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
+    // {
+    //   "id": 3,
+    //   "nameRU": " Без обратного пути",
+    //   "duration": "1ч 17м",
+    //   "isLiked": true,
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 4,
+    //   "nameRU": "Bassweight",
+    //   "duration": "1ч 17м",
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 5,
+    //   "nameRU": "Bassweight",
+    //   "duration": "1ч 17м",
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+    //   }
+    // },
     // {
     //   "id": 6,
     //   "nameRU": "Bassweight",
@@ -303,6 +304,8 @@ function App() {
   //     }
   //   };
   // }
+
+
   function tmpSetUser() {
     setCurrentUser({ _id: 1 });
   }
@@ -320,6 +323,10 @@ function App() {
               <Route
                 path="/movies"
                 element={<Movies tmpOnLoad={tmpSetUser} />}
+              />
+              <Route
+                path="/saved-movies"
+                element={<SavedMovies />}
               />
             </Routes>
             {/* <Routes>
