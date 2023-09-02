@@ -1,0 +1,10 @@
+.card__image {
+  background-color: lightgray 50%;
+  height: 201px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  display: block;
+}

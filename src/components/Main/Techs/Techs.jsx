@@ -4,7 +4,7 @@ import './techs.css';
 
 function Techs() {
   return (
-    <section className="techs" id='techs'>
+    <section className="techs" id='techs' aria-label="Технологии в проекте">
       <SectionHeader text='Технологии' isSpecial={true} />
       <h3 className="techs__subheader">7 технологий</h3>
       <p className="techs__description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>

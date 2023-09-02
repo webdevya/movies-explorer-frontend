@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonBase from "../ButtonBase/ButtonBase";
 import './square-button.css';
-function TransparentButton({ mixinClassName, btnText, onClick }) {
+function SquareButton({ mixinClassName, btnText, onClick, disabled, type }) {
 
   return (
     <ButtonBase
@@ -9,7 +9,9 @@ function TransparentButton({ mixinClassName, btnText, onClick }) {
       mixinClassName={mixinClassName}
       btnText={btnText}
       onClick={onClick}
+      disabled={disabled}
+      type={type}
     />
   );
 }
-export default TransparentButton;
+export default SquareButton;

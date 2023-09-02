@@ -6,7 +6,7 @@ import './about-me.css';
 
 function AboutMe() {
   return (
-    <section className="about-me" id='about-me'>
+    <section className="about-me" id='about-me' aria-label="Обо мне">
       <SectionHeader text='Студент' />
       <article className="about-me__personality-placeholder">
         <div className="about-me__personality-text-placeholder">

@@ -1,6 +1,7 @@
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
 // import Main from './Main';
 // import ImagePopup from './ImagePopup';
 // import EditProfilePopup from './EditProfilePopup';
@@ -19,6 +20,7 @@ import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 //import InfoTooltip from './InfoTooltip';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
+import { CurrentMoviesContext } from '../../contexts/CurrentMoviesContext';
 
 function App() {
 
@@ -29,11 +31,106 @@ function App() {
   // const [toolTipIsOk, setToolTipIsOk] = React.useState(true);
   // const [selectedCard, setSelectedCard] = React.useState(null);
   // const [deletingCard, setDeletingCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({ _id: 1 });
   //const [cards, setCards] = React.useState([]);
   //const [loggedData, setLoggedData] = React.useState({});
   //const [mainMenuData, setMainMenuData] = React.useState(getSignInMenuData());
   const [isLoading, setIsLoading] = React.useState(false);
+  const [currentMovies, setCurrentMovies] = React.useState([
+    {
+      "id": 1,
+      "nameRU": "«Роллинг Стоунз» в изгнании в изгнании в изгнании в изгнании",
+      "duration": "1ч 17м",
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg"
+      }
+    },
+    {
+      "id": 2,
+      "nameRU": "All Tomorrow's Parties",
+      "duration": "1ч 17м",
+      "isLiked": true,
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg"
+      }
+    },
+    {
+      "id": 3,
+      "nameRU": " Без обратного пути",
+      "duration": "1ч 17м",
+      "isLiked": true,
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+      }
+    },
+    {
+      "id": 4,
+      "nameRU": "Bassweight",
+      "duration": "1ч 17м",
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+      }
+    },
+    {
+      "id": 5,
+      "nameRU": "Bassweight",
+      "duration": "1ч 17м",
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+      }
+    },
+    {
+      "id": 6,
+      "nameRU": "Bassweight",
+      "duration": "1ч 17м",
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+      }
+    },
+    {
+      "id": 7,
+      "nameRU": "Bassweight",
+      "duration": "1ч 17м",
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+      }
+    },
+    {
+      "id": 8,
+      "nameRU": "Bassweight",
+      "duration": "1ч 17м",
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+      }
+    },
+    {
+      "id": 9,
+      "nameRU": " Без обратного пути",
+      "duration": "1ч 17м",
+      "isLiked": true,
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+      }
+    },
+    {
+      "id": 10,
+      "nameRU": " Без обратного пути",
+      "duration": "1ч 17м",
+      "isLiked": true,
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+      }
+    },
+    {
+      "id": 11,
+      "nameRU": " Без обратного пути",
+      "duration": "1ч 17м",
+      "isLiked": true,
+      "image": {
+        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+      }
+    },
+  ])
 
   const navigate = useNavigate();
 
@@ -206,14 +303,26 @@ function App() {
   //     }
   //   };
   // }
-
+  function tmpSetUser() {
+    setCurrentUser({ _id: 1 });
+  }
   return (
     <LoadingContext.Provider value={{ isLoading }}>
       <CurrentUserContext.Provider value={currentUser}>
-        <div className="page">
-          <Header />
-          <Main />
-          {/* <Routes>
+        <CurrentMoviesContext.Provider value={currentMovies}>
+          <div className="page">
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={<Main />}
+              />
+              <Route
+                path="/movies"
+                element={<Movies tmpOnLoad={tmpSetUser} />}
+              />
+            </Routes>
+            {/* <Routes>
             <Route
               path="/"
               element={
@@ -245,9 +354,9 @@ function App() {
                 menuDataInstance={getSignInMenuData()} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes> */}
-          <Footer />
+            <Footer />
 
-          {/* <EditProfilePopup
+            {/* <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onUpdateUser={handleUpdateUser}
           />
@@ -277,7 +386,8 @@ function App() {
             tooltip={toolTipText}
           /> */}
 
-        </div>
+          </div>
+        </CurrentMoviesContext.Provider>
       </CurrentUserContext.Provider>
     </LoadingContext.Provider>
   );

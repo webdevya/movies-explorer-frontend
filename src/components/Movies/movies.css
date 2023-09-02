@@ -1,0 +1,8 @@
+@import url(./__more/movies-more.css);
+
+.movies {
+  display: flex;
+  flex-direction: column;
+  margin: 0 70px;
+
+}

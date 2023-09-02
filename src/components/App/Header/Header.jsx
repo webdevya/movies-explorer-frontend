@@ -29,7 +29,7 @@ function Header() {
       </div>}
       {isLoggedIn &&
         <RoundedButton
-          mixinClassName='header-account-placeholder'
+          mixinClassName='header-account-placeholder rounded-button_size_big'
           btnText='Аккаунт'
         />}
       {!isLoggedIn && <div className='header__auth-menu-placeholder'>
@@ -39,6 +39,7 @@ function Header() {
         />
         <SquareButton
           btnText='Войти'
+          mixinClassName="square-button_type_small-green"
         />
       </div>
       }
