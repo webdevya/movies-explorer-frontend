@@ -19,5 +19,6 @@
 @media screen and (max-width: 767px) {
   .card-list__items {
     grid-template-columns: 1fr;
+    row-gap: 6px;
   }
 }

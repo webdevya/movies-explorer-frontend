@@ -3,3 +3,9 @@
   justify-content: center;
   padding: 18px 0 99px;
 }
+
+@media screen and (max-width: 767px) {
+  .movies-more {
+    padding-bottom: 80px;
+  }
+}

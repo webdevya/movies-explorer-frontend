@@ -79,30 +79,30 @@ function App() {
         "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
       }
     },
-    {
-      "id": 6,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 7,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 8,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
+    // {
+    //   "id": 6,
+    //   "nameRU": "Bassweight",
+    //   "duration": "1ч 17м",
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 7,
+    //   "nameRU": "Bassweight",
+    //   "duration": "1ч 17м",
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 8,
+    //   "nameRU": "Bassweight",
+    //   "duration": "1ч 17м",
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
+    //   }
+    // },
     // {
     //   "id": 9,
     //   "nameRU": " Без обратного пути",

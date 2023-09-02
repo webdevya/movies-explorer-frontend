@@ -11,3 +11,9 @@
   border-radius: 5px;
   border: 1px solid #424242;
 }
+
+@media screen and (max-width: 767px) {
+  .square-button_type_wide-transparent {
+    width: 240px;
+  }
+}

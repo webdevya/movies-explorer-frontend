@@ -11,3 +11,9 @@
   border-bottom: 1px solid #424242;
 
 }
+
+@media screen and (max-width: 767px) {
+  .search {
+    padding-bottom: 37px;
+  }
+}
