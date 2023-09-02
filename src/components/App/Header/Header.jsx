@@ -29,8 +29,13 @@ function Header() {
       </div>}
       {isLoggedIn &&
         <RoundedButton
-          mixinClassName='header-account-placeholder rounded-button_size_big'
+          mixinClassName='header__account-placeholder rounded-button_size_big'
           btnText='Аккаунт'
+        />}
+      {isLoggedIn &&
+        <SquareButton
+          mixinClassName='header__burger-placeholder square-button_type_burger'
+          btnText=''
         />}
       {!isLoggedIn && <div className='header__auth-menu-placeholder'>
         <TransparentButton

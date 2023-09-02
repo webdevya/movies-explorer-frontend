@@ -103,33 +103,33 @@ function App() {
         "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
       }
     },
-    {
-      "id": 9,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-    {
-      "id": 10,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-    {
-      "id": 11,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
+    // {
+    //   "id": 9,
+    //   "nameRU": " Без обратного пути",
+    //   "duration": "1ч 17м",
+    //   "isLiked": true,
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 10,
+    //   "nameRU": " Без обратного пути",
+    //   "duration": "1ч 17м",
+    //   "isLiked": true,
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 11,
+    //   "nameRU": " Без обратного пути",
+    //   "duration": "1ч 17м",
+    //   "isLiked": true,
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
+    //   }
+    // },
   ])
 
   const navigate = useNavigate();

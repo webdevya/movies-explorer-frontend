@@ -6,3 +6,15 @@
 
   justify-content: space-between;
 }
+
+@media screen and (max-width: 1023px) {
+  .card__caption {
+    margin: 25px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__caption {
+    margin: 16px 0 0 0;
+  }
+}

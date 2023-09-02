@@ -5,3 +5,15 @@
   padding: 70px 0 28px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1023px) {
+  .card-list {
+    padding-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-list {
+    padding-bottom: 13px;
+  }
+}

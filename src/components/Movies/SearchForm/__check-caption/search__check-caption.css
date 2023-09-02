@@ -8,3 +8,9 @@
   padding: 0;
   /* 150% */
 }
+
+@media screen and (max-width: 767px) {
+  .search__check-caption {
+    font-size: 11px;
+  }
+}

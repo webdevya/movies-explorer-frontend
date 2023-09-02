@@ -3,6 +3,7 @@
 @import url(./_type/square-button_type_submit-image.css);
 @import url(./_type/square-button_type_small-image-accept.css);
 @import url(./square-button_disabled.css);
+@import url(./_type/square-button_type_burger.css);
 
 .square-button {
   margin: 0;

@@ -2,7 +2,8 @@
 @import url(./__logo/header__logo.css);
 @import url(./__logo/header__logo_with-img.css);
 @import url(./__menu-placeholder/header__menu-placeholder.css);
-@import url(./header-account-placeholder/header-account-placeholder.css);
+@import url(./__account-placeholder/header__account-placeholder.css);
+@import url(./__burger-placeholder/header__burger-placeholder.css);
 
 .header {
   display: flex;

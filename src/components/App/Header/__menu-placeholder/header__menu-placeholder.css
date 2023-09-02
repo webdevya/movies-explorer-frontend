@@ -3,3 +3,9 @@
   column-gap: 16px;
   margin: 28px 0;
 }
+
+@media screen and (max-width: 1023px) {
+  .header__menu-placeholder {
+    visibility: hidden;
+  }
+}

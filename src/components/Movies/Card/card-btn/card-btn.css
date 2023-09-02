@@ -1,0 +1,12 @@
+.card-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+@media screen and (max-width: 767px) {
+  .card-btn {
+    top: 10px;
+    right: 10px;
+  }
+}

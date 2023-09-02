@@ -9,3 +9,15 @@
   max-width: 250px;
   min-height: 48px;
 }
+
+@media screen and (max-width: 1023px) {
+  .card__caption-text {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__caption-text {
+    font-size: 12px;
+  }
+}
