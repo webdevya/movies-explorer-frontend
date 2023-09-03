@@ -1,0 +1,37 @@
+@import url(./__greeting/profile__greeting.css);
+@import url(./__form/profile__form.css);
+@import url(./__fields/profile__fields.css);
+@import url(./__field/profile__field.css);
+@import url(./__field/_underlined/profile__field_underlined.css);
+@import url(./__field-caption/profile__field-caption.css);
+@import url(./__input/profile__input.css);
+@import url(./__input/_type/profile__input_type_error.css);
+@import url(./__error/profile__error.css);
+@import url(./__buttons/profile__buttons.css);
+@import url(./__info/profile__info.css);
+
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 74px 0 70px;
+  margin: 0;
+  box-sizing: border-box;
+  flex: 1;
+  height: calc(100vh - 74px);
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    padding: 236px 0 269px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    padding: 70px 0 40px;
+  }
+}

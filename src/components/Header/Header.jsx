@@ -6,6 +6,7 @@ import TransparentButton from '../Common/Buttons/TransparentButton/TransparentBu
 import RoundedButton from '../Common/Buttons/RoundedButton/RoundedButton';
 import SquareButton from '../Common/Buttons/SquareButton/SquareButton'
 import './header.css';
+import { Link } from 'react-router-dom';
 
 
 function Header() {
@@ -14,16 +15,16 @@ function Header() {
   const isLoggedIn = currentUser._id;
   return (
     <header className='header'>
-      <div className={`header__logo ${!isLoading && 'header__logo_with-img'}`}>
+      <Link className={`header__logo link ${!isLoading && 'header__logo_with-img'}`} to='/'>
         {isLoading && <Preloader />}
-      </div>
+      </Link>
       {isLoggedIn && <div className='header__menu-placeholder'>
         <TransparentButton
           mixinClassName='transparent-button_type_all-films'
           btnText='Фильмы'
         />
         <TransparentButton
-          mixinClassName='transparent-button_type_saved-films'
+          mixinClassName='transparent-button_type_standard'
           btnText='Сохраненные фильмы'
         />
       </div>}

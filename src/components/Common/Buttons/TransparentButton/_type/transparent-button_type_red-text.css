@@ -1,0 +1,12 @@
+.transparent-button_type_red-text {
+  color: #EE3465;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media screen and (max-width: 767px) {
+  .transparent-button_type_red-text {
+    font-size: 12px;
+  }
+}
