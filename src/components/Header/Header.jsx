@@ -1,10 +1,10 @@
 import React from 'react';
-import Preloader from '../../Common/Preloader/Preloader'
-import { LoadingContext } from '../../../contexts/LoadingContext';
-import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
-import TransparentButton from '../../Common/Buttons/TransparentButton/TransparentButton';
-import RoundedButton from '../../Common/Buttons/RoundedButton/RoundedButton';
-import SquareButton from '../../Common/Buttons/SquareButton/SquareButton'
+import Preloader from '../Common/Preloader/Preloader'
+import { LoadingContext } from '../../contexts/LoadingContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import TransparentButton from '../Common/Buttons/TransparentButton/TransparentButton';
+import RoundedButton from '../Common/Buttons/RoundedButton/RoundedButton';
+import SquareButton from '../Common/Buttons/SquareButton/SquareButton'
 import './header.css';
 
 

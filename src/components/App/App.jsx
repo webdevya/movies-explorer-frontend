@@ -1,7 +1,4 @@
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import Main from '../Main/Main';
-import Movies from '../MovieLists/Movies/Movies';
+
 // import Main from './Main';
 // import ImagePopup from './ImagePopup';
 // import EditProfilePopup from './EditProfilePopup';
@@ -21,7 +18,11 @@ import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { CurrentMoviesContext } from '../../contexts/CurrentMoviesContext';
-import SavedMovies from '../MovieLists/SavedMovies/SavedMovies';
+
+import LandingPage from '../Pages/LandingPage/LandingPage';
+import MoviesPage from '../Pages/MoviesPage/MoviesPage';
+import SavedMoviesPage from '../Pages/SavedMoviesPage/SavedMoviesPage';
+import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 
 function App() {
 
@@ -38,23 +39,23 @@ function App() {
   //const [mainMenuData, setMainMenuData] = React.useState(getSignInMenuData());
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentMovies, setCurrentMovies] = React.useState([
-    {
-      "id": 1,
-      "nameRU": "«Роллинг Стоунз» в изгнании в изгнании в изгнании в изгнании",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg"
-      }
-    },
-    {
-      "id": 2,
-      "nameRU": "All Tomorrow's Parties",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg"
-      }
-    },
+    // {
+    //   "id": 1,
+    //   "nameRU": "«Роллинг Стоунз» в изгнании в изгнании в изгнании в изгнании",
+    //   "duration": "1ч 17м",
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg"
+    //   }
+    // },
+    // {
+    //   "id": 2,
+    //   "nameRU": "All Tomorrow's Parties",
+    //   "duration": "1ч 17м",
+    //   "isLiked": true,
+    //   "image": {
+    //     "url": "https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg"
+    //   }
+    // },
     // {
     //   "id": 3,
     //   "nameRU": " Без обратного пути",
@@ -306,27 +307,28 @@ function App() {
   // }
 
 
-  function tmpSetUser() {
-    setCurrentUser({ _id: 1 });
-  }
+
   return (
     <LoadingContext.Provider value={{ isLoading }}>
       <CurrentUserContext.Provider value={currentUser}>
         <CurrentMoviesContext.Provider value={currentMovies}>
           <div className="page">
-            <Header />
             <Routes>
               <Route
                 path="/"
-                element={<Main />}
+                element={<LandingPage />}
               />
               <Route
                 path="/movies"
-                element={<Movies tmpOnLoad={tmpSetUser} />}
+                element={<MoviesPage />}
               />
               <Route
                 path="/saved-movies"
-                element={<SavedMovies />}
+                element={<SavedMoviesPage />}
+              />
+              <Route
+                path="*"
+                element={<NotFoundPage />}
               />
             </Routes>
             {/* <Routes>
@@ -361,7 +363,6 @@ function App() {
                 menuDataInstance={getSignInMenuData()} />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes> */}
-            <Footer />
 
             {/* <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
