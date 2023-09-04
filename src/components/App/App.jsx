@@ -24,6 +24,8 @@ import MoviesPage from '../Pages/MoviesPage/MoviesPage';
 import SavedMoviesPage from '../Pages/SavedMoviesPage/SavedMoviesPage';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 import ProfilePage from '../Pages/ProfilePage/ProfilePage';
+import RegisterPage from '../Pages/RegisterPage/RegisterPage';
+import LoginPage from '../Pages/LoginPage/LoginPage';
 
 function App() {
 
@@ -38,6 +40,7 @@ function App() {
   //const [cards, setCards] = React.useState([]);
   //const [loggedData, setLoggedData] = React.useState({});
   //const [mainMenuData, setMainMenuData] = React.useState(getSignInMenuData());
+  const [errorText, setErrorText] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentMovies, setCurrentMovies] = React.useState([
     {
@@ -316,6 +319,24 @@ function App() {
     navigate('/', { replace: true });
   }
 
+  function onRegister({ name, email, password }) {
+    console.log(name, email, password);
+    navigate('/signin', { replace: true });
+  }
+  function onEnterClick() {
+    navigate('/signin', { replace: true });
+  }
+
+  function onLogin({ email, password }) {
+    Promise.resolve(setCurrentUser({ _id: 1, name: 'Прокопий', email: email, password: password }))
+      .then(() => { navigate('/movies', { replace: true }); });
+
+  }
+
+  function onRegisterClick() {
+    navigate('/signup', { replace: true });
+  }
+
   return (
     <LoadingContext.Provider value={{ isLoading }}>
       <CurrentUserContext.Provider value={currentUser}>
@@ -339,6 +360,23 @@ function App() {
                 element={<ProfilePage
                   onProfileUpdate={onProfileUpdate}
                   onProfileExit={onProfileExit}
+                />}
+              />
+              <Route
+                path="/signup"
+                element={<RegisterPage
+                  onRegister={onRegister}
+                  onEnterClick={onEnterClick}
+                  errorText={errorText}
+                />}
+
+              />
+              <Route
+                path="/signin"
+                element={<LoginPage
+                  onLogin={onLogin}
+                  onRegisterClick={onRegisterClick}
+                  errorText={errorText}
                 />}
 
               />

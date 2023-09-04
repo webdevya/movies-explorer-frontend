@@ -1,0 +1,13 @@
+.auth-form__addtitional-row {
+  display: flex;
+  column-gap: 6px;
+  margin: 16px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+  .auth-form__addtitional-row {
+    margin-top: 14px;
+  }
+}

@@ -1,12 +1,11 @@
 import React from 'react';
-import Preloader from '../Common/Preloader/Preloader'
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import TransparentButton from '../Common/Buttons/TransparentButton/TransparentButton';
 import RoundedButton from '../Common/Buttons/RoundedButton/RoundedButton';
 import SquareButton from '../Common/Buttons/SquareButton/SquareButton'
 import './header.css';
-import { Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 
 function Header() {
@@ -15,9 +14,10 @@ function Header() {
   const isLoggedIn = currentUser._id;
   return (
     <header className='header'>
-      <Link className={`header__logo link ${!isLoading && 'header__logo_with-img'}`} to='/'>
-        {isLoading && <Preloader />}
-      </Link>
+      <Logo
+        isLoading={isLoading}
+        mixinClassName='header-logo-placeholder'
+      />
       {isLoggedIn && <div className='header__menu-placeholder'>
         <TransparentButton
           mixinClassName='transparent-button_type_all-films'

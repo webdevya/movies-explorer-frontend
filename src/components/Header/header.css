@@ -1,9 +1,8 @@
 @import url(./__auth-menu-placeholder/header__auth-menu-placeholder.css);
-@import url(./__logo/header__logo.css);
-@import url(./__logo/header__logo_with-img.css);
 @import url(./__menu-placeholder/header__menu-placeholder.css);
 @import url(./__account-placeholder/header__account-placeholder.css);
 @import url(./__burger-placeholder/header__burger-placeholder.css);
+@import url(./header-logo-placeholder.css);
 
 .header {
   display: flex;

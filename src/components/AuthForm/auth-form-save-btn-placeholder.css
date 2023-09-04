@@ -1,0 +1,10 @@
+.auth-form-save-btn-placeholder {
+  width: 100%;
+  margin-top: 27px;
+}
+
+@media screen and (max-width: 767px) {
+  .auth-form-save-btn-placeholder {
+    margin-top: 117px;
+  }
+}

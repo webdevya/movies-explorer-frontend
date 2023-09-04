@@ -11,13 +11,13 @@
   border: 0;
   background: transparent;
   display: block;
-  height: 32px;
+  /* height: 32px; */
   text-align: center;
   font-style: normal;
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .transparent-button {
     height: 26px;
   }
-}
+} */
