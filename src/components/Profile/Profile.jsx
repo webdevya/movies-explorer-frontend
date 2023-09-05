@@ -52,7 +52,7 @@ function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) 
             </label>
           </fieldset>
           {isEditMode && <SquareButton
-            mixinClassName={`square-button_type_wide-blue ${!validation.isValid && 'square-btn_disabled'}`}
+            mixinClassName={`square-button_type_wide-blue ${!validation.isValid && 'square-button_disabled'}`}
             btnText="Сохранить"
             disabled={!validation.isValid}
             type="submit"
