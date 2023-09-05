@@ -27,7 +27,7 @@ function SearchForm({ onSearch }) {
         <input type="text" className="search__form-input" placeholder="Фильм" id="search-form-input" name="name"
           required={true} onChange={validation.handleChange} value={validation.values.name ? validation.values.name : ''} />
         <SquareButton
-          mixinClassName={`square-button_type_submit-image  ${!validation.isValid && "square-btn_disabled"}`}
+          mixinClassName={`square-button_type_submit-image  ${!validation.isValid && "square-button_type_submit-image-disbled"}`}
           btnText=''
           disabled={!validation.isValid}
           type='submit'

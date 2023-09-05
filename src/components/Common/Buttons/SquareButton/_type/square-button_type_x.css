@@ -1,0 +1,11 @@
+.square-button_type_x {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../../../images/close.svg");
+  transform: rotate(-45deg);
+
+}

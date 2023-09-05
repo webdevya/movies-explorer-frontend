@@ -6,10 +6,9 @@ import SquareButton from '../Common/Buttons/SquareButton/SquareButton';
 import TransparentButton from '../Common/Buttons/TransparentButton/TransparentButton';
 
 
-function Profile({ onProfileUpdate, onProfileExit }) {
+function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) {
 
   const validation = useValidation();
-  const [isEditMode, setIsEditMode] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
   function handleEditProfile() {
     setIsEditMode(true);

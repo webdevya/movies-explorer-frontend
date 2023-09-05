@@ -1,0 +1,22 @@
+.menu-popup__main {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0;
+  position: relative;
+  background: #202020;
+  width: 520px;
+  height: 100vh;
+  padding: 159px 0 90px;
+  box-sizing: border-box;
+}
+
+
+
+@media screen and (max-width: 550px) {
+  .menu-popup__main {
+    width: 100%;
+    padding: 144px 0 46px;
+  }
+}

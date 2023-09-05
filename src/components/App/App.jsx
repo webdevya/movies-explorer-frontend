@@ -18,6 +18,7 @@ import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { CurrentMoviesContext } from '../../contexts/CurrentMoviesContext';
+import { NavigateContext } from '../../contexts/NavigateContext';
 
 import LandingPage from '../Pages/LandingPage/LandingPage';
 import MoviesPage from '../Pages/MoviesPage/MoviesPage';
@@ -26,22 +27,15 @@ import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 import ProfilePage from '../Pages/ProfilePage/ProfilePage';
 import RegisterPage from '../Pages/RegisterPage/RegisterPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
+import MenuPopup from '../MenuPopup/MenuPopup';
 
 function App() {
 
-  // const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  // const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  // const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  // const [toolTipText, setToolTipText] = React.useState('');
-  // const [toolTipIsOk, setToolTipIsOk] = React.useState(true);
-  // const [selectedCard, setSelectedCard] = React.useState(null);
-  // const [deletingCard, setDeletingCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState({ _id: 1, name: 'Прокопий', email: 'prokopiy@ya.ru' });
-  //const [cards, setCards] = React.useState([]);
-  //const [loggedData, setLoggedData] = React.useState({});
-  //const [mainMenuData, setMainMenuData] = React.useState(getSignInMenuData());
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [errorText, setErrorText] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isProfileEditMode, setIsProfileEditMode] = React.useState(false)
   const [currentMovies, setCurrentMovies] = React.useState([
     {
       "id": 1,
@@ -140,178 +134,13 @@ function App() {
 
   const navigate = useNavigate();
 
-  // React.useEffect(() => {
-  //   handleTokenCheck();
-  // }, [])
 
-  // function handleTokenCheck() {
-
-  //   if (localStorage.getItem('jwt')) {
-  //     const jwt = localStorage.getItem('jwt');
-
-  //     auth.checkToken(jwt)
-  //       .then((res) => {
-  //         setLoggedData(res);
-  //         navigate("/", { replace: true });
-  //         Promise.all([
-  //           api.getUserInfo(),
-  //           api.getInitialCards()
-  //         ])
-  //           .then(([user, cardList]) => {
-  //             setCurrentUser(user);
-  //             setCards(cardList);
-  //           })
-  //           .catch(err => { console.log(err); showError(); });
-  //       })
-  //       .catch(err => { console.log(err); showError(); });
-  //   }
-  // }
-
-  // function handleSubmit(request, hideError = false) {
-  //   setIsLoading(true);
-  //   request()
-  //     .then(closeAllPopups)
-  //     .catch(err => { console.log(err); showError(hideError ? null : err); })
-  //     .finally(() => setIsLoading(false));
-  // }
-
-  // function handleCardLike(card) {
-  //   const isLiked = getIsUserLiked(card.likes, currentUser._id);
-
-  //   api.toggleLike(card._id, !isLiked)
-  //     .then((newCard) => {
-  //       setCards(state => state.map(c => c._id === card._id ? newCard : c));
-  //     })
-  //     .catch(err => { console.log(err); showError(err); });
-  // }
-
-  // function handleCardDelete(card) {
-  //   setDeletingCard(card);
-  // }
-
-  // function handleConfirmDelete() {
-  //   handleSubmit(
-  //     () => {
-  //       return api.deleteCard(deletingCard._id)
-  //         .then(() => {
-  //           setCards(state => state.filter(c => c._id !== deletingCard._id));
-  //         });
-  //     });
-  // }
-
-  // function handleEditProfileClick() {
-  //   setIsEditProfilePopupOpen(true);
-  // }
-
-  // function handleEditAvatarClick() {
-  //   setIsEditAvatarPopupOpen(true);
-  // }
-
-  // function showError(error) {
-  //   showToolTip(false, error);
-  // }
-
-  // function showToolTip(isOk, text) {
-  //   setToolTipIsOk(isOk);
-  //   if (text)
-  //     setToolTipText(text);
-  //   else
-  //     isOk ? setToolTipText('Вы успешно зарегистрировались!') : setToolTipText('Что-то пошло не так! Попробуйте ещё раз.');
-  // }
-
-  // function handleUpdateUser(userProps) {
-  //   handleSubmit(
-  //     () => {
-  //       return api.updateUserProps(userProps)
-  //         .then(user => {
-  //           setCurrentUser(user);
-  //         });
-  //     });
-  // }
-
-  // function handleUpdateAvatar(avatar) {
-  //   handleSubmit(
-  //     () => {
-  //       return api.updateUserAvatar(avatar)
-  //         .then(user => {
-  //           setCurrentUser(user);
-  //         });
-  //     });
-  // }
-
-  // function handleAddCardSubmit(cardData) {
-  //   handleSubmit(
-  //     () => {
-  //       return api.addCard(cardData)
-  //         .then(newCard => {
-  //           setCards([newCard, ...cards]);
-  //         });
-  //     });
-  // }
-
-  // function handleLogin(credentials) {
-  //   handleSubmit(
-  //     () => {
-  //       return auth.signin(credentials)
-  //         .then((res) => {
-  //           if (res.token) {
-  //             localStorage.setItem('jwt', res.token);
-
-  //           }
-  //         })
-  //         .then(() => handleTokenCheck());
-  //     }, true);
-  // }
-
-  // function handleRegister(credentials) {
-  //   handleSubmit(
-  //     () => {
-  //       return auth.signup(credentials)
-  //         .then((res) => {
-  //           showToolTip(true);
-  //           navigate('/sign-in', { replace: true });
-  //         });
-  //     }, true);
-  // }
-
-  // function handleAddPlaceClick() {
-  //   setIsAddPlacePopupOpen(true);
-  // }
-
-  // function closeAllPopups() {
-  //   setIsEditProfilePopupOpen(false);
-  //   setIsAddPlacePopupOpen(false);
-  //   setIsEditAvatarPopupOpen(false);
-  //   setDeletingCard(null);
-  //   setSelectedCard(null);
-  //   setToolTipText('');
-  // }
-
-  // function handleCardClick(card) {
-  //   setSelectedCard(card);
-  // }
-
-  // function getSignInMenuData() {
-  //   return { email: '', btnText: 'Войти', onClick: () => { navigate('/sign-in', { replace: true }); } };
-  // }
-
-  // function getSignUpMenuData() {
-  //   return { email: '', btnText: 'Регистрация', onClick: () => { navigate('/sign-up', { replace: true }); } };
-  // }
-
-  // function getSignOutMenuData() {
-  //   return {
-  //     email: loggedData?.email, btnText: 'Выйти', onClick: () => {
-  //       if (localStorage.getItem('jwt'))
-  //         localStorage.removeItem('jwt');
-  //       setLoggedData({});
-  //       navigate('/sign-in', { replace: true });
-  //     }
-  //   };
-  // }
-
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
   function onProfileUpdate({ name, email }) {
     setCurrentUser({ ...currentUser, name: name, email: email })
+    setIsProfileEditMode(false);
   }
 
   function onProfileExit() {
@@ -323,132 +152,104 @@ function App() {
     console.log(name, email, password);
     navigate('/signin', { replace: true });
   }
-  function onEnterClick() {
-    navigate('/signin', { replace: true });
-  }
+
 
   function onLogin({ email, password }) {
-    Promise.resolve(setCurrentUser({ _id: 1, name: 'Прокопий', email: email, password: password }))
-      .then(() => { navigate('/movies', { replace: true }); });
+    setCurrentUser({ _id: 1, name: 'Прокопий', email: email, password: password })
+    navigate('/movies', { replace: true });
+    // Promise.resolve(setCurrentUser({ _id: 1, name: 'Прокопий', email: email, password: password }))
+    //   .then(() => { navigate('/movies', { replace: true }); });
 
+  }
+  function onSigninClick() {
+    navigate('/signin', { replace: true });
+    setIsMenuOpen(false);
   }
 
   function onRegisterClick() {
     navigate('/signup', { replace: true });
+    setIsMenuOpen(false);
+  }
+
+  function onMainClick() {
+    navigate('/', { replace: true });
+    setIsMenuOpen(false);
+  }
+
+  function onMoviesClick() {
+    navigate('/movies', { replace: true });
+    setIsMenuOpen(false);
+  }
+
+  function onSavedMoviesClick() {
+    navigate('/saved-movies', { replace: true });
+    setIsMenuOpen(false);
+  }
+
+  function onProfileClick() {
+    navigate('/profile', { replace: true });
+    setIsMenuOpen(false);
+  }
+
+  function onMenuClick() {
+    setIsMenuOpen(true);
   }
 
   return (
     <LoadingContext.Provider value={{ isLoading }}>
       <CurrentUserContext.Provider value={currentUser}>
         <CurrentMoviesContext.Provider value={currentMovies}>
-          <div className="page">
-            <Routes>
-              <Route
-                path="/"
-                element={<LandingPage />}
-              />
-              <Route
-                path="/movies"
-                element={<MoviesPage />}
-              />
-              <Route
-                path="/saved-movies"
-                element={<SavedMoviesPage />}
-              />
-              <Route
-                path="/profile"
-                element={<ProfilePage
-                  onProfileUpdate={onProfileUpdate}
-                  onProfileExit={onProfileExit}
-                />}
-              />
-              <Route
-                path="/signup"
-                element={<RegisterPage
-                  onRegister={onRegister}
-                  onEnterClick={onEnterClick}
-                  errorText={errorText}
-                />}
-
-              />
-              <Route
-                path="/signin"
-                element={<LoginPage
-                  onLogin={onLogin}
-                  onRegisterClick={onRegisterClick}
-                  errorText={errorText}
-                />}
-
-              />
-              <Route
-                path="*"
-                element={<NotFoundPage />}
-              />
-            </Routes>
-            {/* <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute element={Main}
-                  loggedIn={loggedData.email}
-                  cards={cards}
-                  onEditProfile={handleEditProfileClick}
-                  onAddPlace={handleAddPlaceClick}
-                  onEditAvatar={handleEditAvatarClick}
-                  onCardClick={handleCardClick}
-                  onCardLike={handleCardLike}
-                  onCardDelete={handleCardDelete}
-                  menuDataHandler={setMainMenuData}
-                  menuDataInstance={getSignOutMenuData()}
+          <NavigateContext.Provider value={{ onMainClick, onMoviesClick, onSavedMoviesClick, onProfileClick, onMenuClick, onRegisterClick, onSigninClick }}>
+            <div className="page">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<LandingPage />}
                 />
-              } />
+                <Route
+                  path="/movies"
+                  element={<MoviesPage />}
+                />
+                <Route
+                  path="/saved-movies"
+                  element={<SavedMoviesPage />}
+                />
+                <Route
+                  path="/profile"
+                  element={<ProfilePage
+                    onProfileUpdate={onProfileUpdate}
+                    onProfileExit={onProfileExit}
+                    isEditMode={isProfileEditMode}
+                    setIsEditMode={setIsProfileEditMode}
+                  />}
+                />
+                <Route
+                  path="/signup"
+                  element={<RegisterPage
+                    onRegister={onRegister}
+                    errorText={errorText}
+                  />}
 
-            <Route
-              path="/sign-in"
-              element={<Login
-                onSubmit={handleLogin}
-                menuDataHandler={setMainMenuData}
-                menuDataInstance={getSignUpMenuData()} />} />
-            <Route
-              path="/sign-up"
-              element={<Register
-                onSubmit={handleRegister}
-                menuDataHandler={setMainMenuData}
-                menuDataInstance={getSignInMenuData()} />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes> */}
+                />
+                <Route
+                  path="/signin"
+                  element={<LoginPage
+                    onLogin={onLogin}
+                    errorText={errorText}
+                  />}
 
-            {/* <EditProfilePopup
-            isOpen={isEditProfilePopupOpen}
-            onUpdateUser={handleUpdateUser}
-          />
-
-          <EditAvatarPopup
-            isOpen={isEditAvatarPopupOpen}
-            onUpdateAvatar={handleUpdateAvatar}
-          />
-
-          <AddPlacePopup
-            isOpen={isAddPlacePopupOpen}
-            onAddCard={handleAddCardSubmit}
-          />
-
-          <ImagePopup
-            card={selectedCard}
-          />
-
-          <ConfirmPopup
-            title="Вы уверены?"
-            isOpen={deletingCard !== null}
-            processingText="Удаление..."
-            onConfirm={handleConfirmDelete}
-          />
-          <InfoTooltip
-            isOK={toolTipIsOk}
-            tooltip={toolTipText}
-          /> */}
-
-          </div>
+                />
+                <Route
+                  path="*"
+                  element={<NotFoundPage />}
+                />
+              </Routes>
+              <MenuPopup
+                isOpen={isMenuOpen}
+                onClose={closeMenu}
+              />
+            </div>
+          </NavigateContext.Provider>
         </CurrentMoviesContext.Provider>
       </CurrentUserContext.Provider>
     </LoadingContext.Provider>

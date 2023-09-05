@@ -1,11 +1,16 @@
+import React from "react";
 import AuthForm from "../../AuthForm/AuthForm";
 import CaptionedField from "../../Common/CaptionedField/CaptionedField";
 import useValidation from '../../../hooks/useValidation';
+import { NavigateContext } from "../../../contexts/NavigateContext";
 import './register.css';
 
-function RegisterPage({ onRegister, onEnterClick, errorText }) {
+function RegisterPage({ onRegister, errorText }) {
 
   const validation = useValidation();
+
+  const { onSigninClick } = React.useContext(NavigateContext);
+
   function handleSubmit() {
     onRegister({ name: validation.values.name, email: validation.values.email, password: validation.values.password });
   }
@@ -18,7 +23,7 @@ function RegisterPage({ onRegister, onEnterClick, errorText }) {
       additionalText='Уже зарегистрированы?'
       additionalBtnText='Войти'
       onSubmit={handleSubmit}
-      onAdditionalBtnClick={onEnterClick}
+      onAdditionalBtnClick={onSigninClick}
       isValid={validation.isValid}
       errorText={errorText}
     >

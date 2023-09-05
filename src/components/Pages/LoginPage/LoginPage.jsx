@@ -2,10 +2,15 @@ import AuthForm from "../../AuthForm/AuthForm";
 import CaptionedField from "../../Common/CaptionedField/CaptionedField";
 import useValidation from '../../../hooks/useValidation';
 import './login.css';
+import { NavigateContext } from "../../../contexts/NavigateContext";
+import React from "react";
 
-function LoginPage({ onLogin, onRegisterClick, errorText }) {
+function LoginPage({ onLogin, errorText }) {
 
   const validation = useValidation();
+
+  const { onRegisterClick } = React.useContext(NavigateContext);
+
   function handleSubmit() {
     onLogin({ email: validation.values.email, password: validation.values.password });
   }

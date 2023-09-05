@@ -1,0 +1,7 @@
+.menu-popup-close-placeholder {
+
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+}
