@@ -1,0 +1,26 @@
+@import url(./__text/footer__text.css);
+@import url(./__line/footer__line.css);
+@import url(./__links/footer__links.css);
+@import url(./__link/footer__link.css);
+@import url(./__year/footer__year.css);
+
+.footer {
+  margin: 0;
+  padding: 60px 70px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .footer {
+    padding: 60px 30px 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    padding: 79px 10px 20px;
+  }
+}

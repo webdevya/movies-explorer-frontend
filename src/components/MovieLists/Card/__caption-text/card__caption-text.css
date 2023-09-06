@@ -1,0 +1,23 @@
+.card__caption-text {
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  max-width: 250px;
+  min-height: 48px;
+}
+
+@media screen and (max-width: 1023px) {
+  .card__caption-text {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__caption-text {
+    font-size: 12px;
+  }
+}

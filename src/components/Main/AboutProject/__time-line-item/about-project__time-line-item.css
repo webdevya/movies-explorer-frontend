@@ -9,3 +9,10 @@
   padding: 9px 0;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 767px) {
+  .about-project__time-line-item {
+    font-size: 11px;
+    padding: 11px 0;
+  }
+}

@@ -14,6 +14,12 @@
   margin: auto;
   padding: 10px 0;
   box-sizing: border-box;
+}
 
-
+@media screen and (max-width: 767px) {
+  .nav__link {
+    font-size: 10px;
+    width: 82px;
+    padding: 5px 0;
+  }
 }

@@ -1,0 +1,13 @@
+.transparent-button_type_blue-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  height: 17px;
+  color: #4285F4;
+}
+
+@media screen and (max-width: 767px) {
+  .transparent-button_type_blue-text {
+    font-size: 12px;
+  }
+}

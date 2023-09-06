@@ -1,0 +1,16 @@
+.profile__field {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 15px;
+  column-gap: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 410px;
+}
+
+@media screen and (max-width: 470px) {
+  .profile__field {
+    max-width: 260px;
+  }
+}

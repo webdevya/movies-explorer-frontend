@@ -1,0 +1,10 @@
+.not-found-btn-placeholder {
+  margin-top: 180px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .not-found-btn-placeholder {
+    margin-top: 280px;
+  }
+}

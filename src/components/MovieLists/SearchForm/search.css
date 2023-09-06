@@ -1,0 +1,19 @@
+@import url(./__form/search__form.css);
+@import url(./__form-input/search__form-input.css);
+@import url(./__check-thumb-placeholder/search__check-thumb-placeholder.css);
+@import url(./__check-caption/search__check-caption.css);
+
+.search {
+  padding: 80px 0 40px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #424242;
+
+}
+
+@media screen and (max-width: 767px) {
+  .search {
+    padding-bottom: 37px;
+  }
+}

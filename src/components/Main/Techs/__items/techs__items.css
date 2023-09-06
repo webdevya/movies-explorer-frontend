@@ -6,3 +6,19 @@
   flex-wrap: wrap;
   column-gap: 10px;
 }
+
+@media screen and (max-width: 1023px) {
+  .techs__items {
+    margin-top: 83px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .techs__items {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+  }
+}

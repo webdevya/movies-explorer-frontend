@@ -1,0 +1,4 @@
+.hidden-btn {
+  opacity: 0;
+  transition: visibility .5s, opacity .5s ease;
+}

@@ -11,3 +11,18 @@
   justify-self: right;
   text-decoration: none;
 }
+
+@media screen and (max-width: 1023px) {
+  .linked-text__link {
+    font-size: 28px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .linked-text__link {
+      font-size: 18px;
+      line-height: 28px;
+      /* 155.556% */
+      letter-spacing: -0.72px;
+    }
+  }
+}

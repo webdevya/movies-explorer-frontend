@@ -5,3 +5,18 @@
   object-position: center;
   display: block;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-me__personality-image {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me__personality-image {
+    width: 292px;
+    height: 352px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,26 @@
+@import url(./__main/menu-popup__main.css);
+@import url(./__menu/menu-popup__menu.css);
+@import url(./menu-popup-close-placeholder.css);
+@import url(./__links/menu-popup__links.css);
+
+
+.menu-popup {
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, .3);
+  transition: visibility .5s, opacity .5s, background-image .5s ease;
+}
+
+.menu-popup_opened {
+  visibility: visible;
+  opacity: 1;
+}

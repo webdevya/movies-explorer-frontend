@@ -1,0 +1,16 @@
+.search__check-caption {
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+  padding: 0;
+  /* 150% */
+}
+
+@media screen and (max-width: 767px) {
+  .search__check-caption {
+    font-size: 11px;
+  }
+}

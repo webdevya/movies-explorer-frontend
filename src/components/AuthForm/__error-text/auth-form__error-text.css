@@ -1,0 +1,13 @@
+.auth-form__error-text {
+  min-height: 48px;
+
+  color: #EE3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  padding: 0;
+  margin: 0;
+  align-self: flex-start;
+}

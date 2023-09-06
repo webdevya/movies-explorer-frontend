@@ -1,18 +1,16 @@
+@import url(./_type/square-button_type_small-green.css);
+@import url(./_type/square-button_type_wide-transparent.css);
+@import url(./_type/square-button_type_submit-image.css);
+@import url(./_type/square-button_type_small-image-accept.css);
+@import url(./_type/square-button_type_burger.css);
+@import url(./_type/square-button_type_small-image-delete.css);
+@import url(./_type/square-button_type_wide-blue.css);
+@import url(./square-button_disabled.css);
+@import url(./_type/square-button_type_submit-image-disabled.css);
+@import url(./_type/square-button_type_x.css);
+
 .square-button {
-  width: 76px;
-  height: 32px;
-  border-radius: 3px;
-  background: #3DDC84;
-  text-align: center;
-
-  color: #000;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px;
-  /* 133.333% */
-
   margin: 0;
   padding: 0;
-
+  text-align: center;
 }

@@ -10,3 +10,20 @@
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    /* 100% */
+    letter-spacing: -1.6px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me__name {
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+}

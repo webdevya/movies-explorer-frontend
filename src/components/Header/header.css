@@ -1,0 +1,26 @@
+@import url(./__auth-menu-placeholder/header__auth-menu-placeholder.css);
+@import url(./__menu-placeholder/header__menu-placeholder.css);
+@import url(./__account-placeholder/header__account-placeholder.css);
+@import url(./__burger-placeholder/header__burger-placeholder.css);
+@import url(./header-logo-placeholder.css);
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 74px;
+  margin: 0 70px;
+  position: relative;
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    margin: 0 14px;
+  }
+}

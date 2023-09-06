@@ -1,17 +1,23 @@
+@import url(transparent-button-base.css);
 @import url(./_type/transparent-button_type_registration.css);
 @import url(./_type/transparent-button_type_all-films.css);
-@import url(./_type/transparent-button_type_saved-films.css);
+@import url(./_type/transparent-button_type_standard.css);
+@import url(./_type/transparent-button_type_blue-text.css);
+@import url(./_type/transparent-button_type_red-text.css);
+@import url(./_type/transparent-button_type_menu.css);
+@import url(./_type/transparent-button_type_menu-active.css);
 
 .transparent-button {
-  margin: 0;
-  padding: 0;
 
-  border: 0;
   background: transparent;
   display: block;
-  height: 32px;
+  /* height: 32px; */
   text-align: center;
-
-  color: #FFF;
   font-style: normal;
 }
+
+/* @media screen and (max-width: 767px) {
+  .transparent-button {
+    height: 26px;
+  }
+} */

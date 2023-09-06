@@ -1,0 +1,26 @@
+@import url(./card-btn/card-btn.css);
+@import url(./__image/card__image.css);
+@import url(./__caption/card__caption.css);
+@import url(./__caption-text/card__caption-text.css);
+@import url(./__duration/card__duration.css);
+
+.card {
+  width: 360px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .card {
+    width: 339px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    width: 300px;
+  }
+}

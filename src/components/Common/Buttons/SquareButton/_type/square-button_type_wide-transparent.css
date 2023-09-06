@@ -1,0 +1,19 @@
+.square-button_type_wide-transparent {
+  width: 320px;
+  height: 36px;
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid #424242;
+}
+
+@media screen and (max-width: 767px) {
+  .square-button_type_wide-transparent {
+    width: 240px;
+  }
+}

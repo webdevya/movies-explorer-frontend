@@ -9,3 +9,16 @@
 
   margin: 101px 0 0;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-me__portfolio-header {
+    margin-top: 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me__portfolio-header {
+    margin-top: 70px;
+    font-size: 14px;
+  }
+}

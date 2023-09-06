@@ -9,3 +9,19 @@
   line-height: 20px;
   /* 142.857% */
 }
+
+@media screen and (max-width: 1023px) {
+  .headered-text__text {
+    font-size: 12px;
+    line-height: 18px;
+    /* 150% */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .headered-text__text {
+    font-size: 11px;
+    line-height: 16px;
+    /* 150% */
+  }
+}

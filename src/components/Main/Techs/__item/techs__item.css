@@ -15,3 +15,12 @@
   padding: 21px 0 22px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1023px) {
+  .techs__item {
+    font-size: 12px;
+    letter-spacing: -0.48px;
+    width: 84px;
+    padding-bottom: 21px;
+  }
+}

@@ -1,0 +1,24 @@
+.not-found__code {
+  color: #FFF;
+  text-align: center;
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  margin: 246px 0 0 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .not-found__code {
+    margin-top: 408px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .not-found__code {
+    margin-top: 329px;
+    font-size: 80px;
+  }
+}

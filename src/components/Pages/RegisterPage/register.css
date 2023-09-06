@@ -1,0 +1,10 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}

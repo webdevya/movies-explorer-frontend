@@ -1,0 +1,17 @@
+.header__burger-placeholder {
+  display: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .header__burger-placeholder {
+    display: block;
+    margin: 15px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__burger-placeholder {
+
+    margin: 15px 0 16px;
+  }
+}

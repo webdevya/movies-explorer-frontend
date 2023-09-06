@@ -1,0 +1,26 @@
+.card-list__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+  row-gap: 27px;
+  align-content: space-around;
+  justify-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .card-list__items {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-list__items {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+  }
+}

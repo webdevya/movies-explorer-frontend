@@ -1,0 +1,13 @@
+.header__auth-menu-placeholder {
+  margin: 0;
+  padding: 21px 0;
+  display: flex;
+  column-gap: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .header__auth-menu-placeholder {
+    padding: 24px 0;
+    column-gap: 14px;
+  }
+}

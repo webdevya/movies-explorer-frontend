@@ -12,3 +12,23 @@
   padding: 0;
   width: 460px;
 }
+
+@media screen and (max-width: 1023px) {
+  .techs__description {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.48px;
+    margin-top: 22px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .techs__description {
+    font-size: 11px;
+    line-height: 16px;
+    /* 145.455% */
+    letter-spacing: -0.44px;
+    width: auto;
+    margin: 24px 14px 0;
+  }
+}

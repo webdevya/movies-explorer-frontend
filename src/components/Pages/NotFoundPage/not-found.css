@@ -1,0 +1,12 @@
+@import url(./not-found-btn-placeholder.css);
+@import url(./__code/not-found__code.css);
+@import url(./__text/not-found__text.css);
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+
+}

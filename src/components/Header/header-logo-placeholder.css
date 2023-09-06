@@ -1,0 +1,9 @@
+.header-logo-placeholder {
+  margin: 18px 61px 18px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .header-logo-placeholder {
+    margin: 0;
+  }
+}

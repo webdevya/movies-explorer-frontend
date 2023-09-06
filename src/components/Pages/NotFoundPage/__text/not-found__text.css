@@ -1,0 +1,18 @@
+.not-found__text {
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  margin: 5px 0 0 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .not-found__text {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+}

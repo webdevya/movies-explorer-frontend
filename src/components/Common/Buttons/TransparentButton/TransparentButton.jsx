@@ -5,7 +5,7 @@ function TransparentButton({ mixinClassName, btnText, onClick }) {
 
   return (
     <ButtonBase
-      baseClassName='transparent-button'
+      baseClassName='transparent-button transparent-button-base'
       mixinClassName={mixinClassName}
       btnText={btnText}
       onClick={onClick}

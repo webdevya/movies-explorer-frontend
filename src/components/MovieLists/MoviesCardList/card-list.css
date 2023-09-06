@@ -1,0 +1,22 @@
+@import url(./__items/card-list__items.css);
+
+.card-list {
+  margin: 10px 0 0 0;
+  padding: 70px 0 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .card-list {
+    padding-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-list {
+    padding: 40px 0 13px;
+  }
+}

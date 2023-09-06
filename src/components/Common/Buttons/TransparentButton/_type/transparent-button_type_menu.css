@@ -1,0 +1,9 @@
+.transparent-button_type_menu {
+  color: #FFF;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0 auto 24px;
+}

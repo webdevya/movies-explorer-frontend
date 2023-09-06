@@ -1,0 +1,37 @@
+@import url(./auth-form-save-btn-placeholder.css);
+@import url(./__additional-text/auth-form__additional-text.css);
+@import url(./__addtitional-row/auth-form__addtitional-row.css);
+@import url(./__error-text/auth-form__error-text.css);
+@import url(./__form/auth-form__form.css);
+@import url(./__title/auth-form__title.css);
+
+.auth-form {
+  margin: 70px auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: 0;
+  width: 396px;
+}
+
+@media screen and (max-width: 1023px) {
+  .auth-form {
+    margin: 232px auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .auth-form {
+    margin: 56px auto 30px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 456px) {
+  .auth-form {
+    width: 100%;
+    margin: 56px 0 30px;
+    align-items: center;
+  }
+}

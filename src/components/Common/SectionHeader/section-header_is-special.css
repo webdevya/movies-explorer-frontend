@@ -1,0 +1,5 @@
+@media screen and (max-width: 767px) {
+  .section-header_is-special {
+    border-bottom: 1px solid #000;
+  }
+}

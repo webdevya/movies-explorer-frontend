@@ -1,0 +1,11 @@
+.rounded-button_size_big {
+  width: 100px;
+  height: 32px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  /* 114.286% */
+}

@@ -1,3 +1,15 @@
 .about-project__item {
   width: 550px;
 }
+
+@media screen and (max-width: 1023px) {
+  .about-project__item {
+    width: 319px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-project__item {
+    width: 284px;
+  }
+}

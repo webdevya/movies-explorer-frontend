@@ -1,0 +1,22 @@
+.card__image {
+  background-color: lightgray 50%;
+  height: 201px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+@media screen and (max-width: 1023px) {
+  .card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__image {
+    height: 168px;
+  }
+}
