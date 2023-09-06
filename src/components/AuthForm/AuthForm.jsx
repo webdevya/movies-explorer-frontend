@@ -12,7 +12,7 @@ function AuthForm({ name, title, submitText, additionalText, additionalBtnText, 
       <Logo
         isLoading={isLoading}
         mixinClassName="" />
-      <h2 className='auth-form__title'>{title}</h2>
+      <h1 className='auth-form__title'>{title}</h1>
       <form className="auth-form__form" name={name} onSubmit={onSubmit} noValidate={true}>
         {children}
         <p className='auth-form__error-text'>{errorText}</p>

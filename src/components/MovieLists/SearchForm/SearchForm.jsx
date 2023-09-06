@@ -36,7 +36,7 @@ function SearchForm({ onSearch }) {
       </form>
       <div className='search__check-thumb-placeholder'>
         <CheckThumb
-          id="search-form-check"
+          id="search-form-check link"
           name="isShort"
           isChecked={isShort}
           onChange={handleCheckChanged}

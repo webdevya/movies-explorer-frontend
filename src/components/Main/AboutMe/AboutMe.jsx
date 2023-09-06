@@ -16,7 +16,7 @@ function AboutMe() {
             и дочь. Я люблю слушать музыку, а ещё увлекаюсь сном. Недавно начал ходить. С 2015 года работал в компании «Лук и ойл». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
           <Link className="about-me__link link" to="https://github.com/webdevya/" target="_blank" rel="noopener noreferrer">Github</Link>
         </div>
-        <img className="about-me__personality-image" alt="Моя фотография" src="https://img.freepik.com/premium-photo/retrato-de-hombre-mexicano-vestido-con-traje-de-charro-sombrero-y-bigote_827414-84.jpg?w=360"></img>
+        <img className="about-me__personality-image" alt="Фотография 'обо мне'" src="https://img.freepik.com/premium-photo/retrato-de-hombre-mexicano-vestido-con-traje-de-charro-sombrero-y-bigote_827414-84.jpg?w=360"></img>
       </article>
       <h4 className="about-me__portfolio-header">Портфолио</h4>
       <ul className="about-me__portfolio-items">
