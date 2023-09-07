@@ -1,14 +1,16 @@
 import React from 'react';
-import { CurrentMoviesContext } from "../../../contexts/CurrentMoviesContext";
 import './movies.css'
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SquareButton from '../../Common/Buttons/SquareButton/SquareButton'
 import CardButtons from '../MovieButtons/CardButtons/CardButtons';
+import useMovies from '../../../hooks/useMovies';
 
-function Movies({ tmpOnLoad }) {
+function Movies({ errorText, setLoading, setError }) {
 
-  const currentMovies = React.useContext(CurrentMoviesContext);
+  const movieHandler = useMovies(setLoading, setError);
+  const currentMovies = movieHandler.movies;
+  const showMore = false;
   function onSearch({ name }) {
     console.log(name);
   }
@@ -33,12 +35,14 @@ function Movies({ tmpOnLoad }) {
         onCardLike={onCardLike}
         cards={currentMovies}
         cardButtons={cardButtons}
+        errorText={errorText}
       />
       <div className='movies-more'>
-        <SquareButton
-          btnText='Ещё'
-          mixinClassName="square-button_type_wide-transparent"
-        />
+        {showMore &&
+          <SquareButton
+            btnText='Ещё'
+            mixinClassName="square-button_type_wide-transparent"
+          />}
       </div>
     </main>
   );

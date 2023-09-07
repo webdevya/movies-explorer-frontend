@@ -20,7 +20,7 @@ function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) 
 
   function handleSubmit(e) {
     e.preventDefault();
-    onProfileUpdate(validation.values.name, validation.values.email);
+    onProfileUpdate({ name: validation.values.name, email: validation.values.email });
   }
   React.useEffect(() => {
     validation.reset({

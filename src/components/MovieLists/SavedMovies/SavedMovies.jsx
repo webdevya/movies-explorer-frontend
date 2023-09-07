@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SavedCardButtons from '../MovieButtons/SavedCardButtons/SavedCardButtons';
 
 
-function SavedMovies() {
+function SavedMovies({ errorText }) {
 
   const currentMovies = React.useContext(CurrentMoviesContext);
   function onSearch({ name }) {
@@ -31,6 +31,7 @@ function SavedMovies() {
         onCardLike={onCardLike}
         cards={currentMovies}
         cardButtons={cardButtons}
+        errorText={errorText}
       />
       <div className="saved-movies__devider" />
     </main>

@@ -1,7 +1,7 @@
 @import url(transparent-button-base.css);
 @import url(./_type/transparent-button_type_registration.css);
-@import url(./_type/transparent-button_type_all-films.css);
 @import url(./_type/transparent-button_type_standard.css);
+@import url(./_type/transparent-button_type_standard-active.css);
 @import url(./_type/transparent-button_type_blue-text.css);
 @import url(./_type/transparent-button_type_red-text.css);
 @import url(./_type/transparent-button_type_menu.css);

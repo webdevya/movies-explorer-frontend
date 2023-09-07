@@ -5,13 +5,16 @@ import './login.css';
 import { NavigateContext } from "../../../contexts/NavigateContext";
 import React from "react";
 
-function LoginPage({ onLogin, errorText }) {
+function LoginPage({ onLogin, errorText, checkToken }) {
+
+  React.useEffect(() => { checkToken() }, []);
 
   const validation = useValidation();
 
   const { onRegisterClick } = React.useContext(NavigateContext);
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     onLogin({ email: validation.values.email, password: validation.values.password });
   }
 

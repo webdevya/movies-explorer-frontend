@@ -5,11 +5,13 @@ import SavedMovies from "../../MovieLists/SavedMovies/SavedMovies";
 
 
 
-function SavedMoviesPage() {
+function SavedMoviesPage({ errorText }) {
   return (
     <div >
       <Header />
-      <SavedMovies />
+      <SavedMovies
+        errorText={errorText}
+      />
       <Footer />
     </div>
   );

@@ -1,10 +1,12 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { LoadingContext } from '../../contexts/LoadingContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { NavigateContext } from '../../contexts/NavigateContext';
 import TransparentButton from '../Common/Buttons/TransparentButton/TransparentButton';
 import RoundedButton from '../Common/Buttons/RoundedButton/RoundedButton';
 import SquareButton from '../Common/Buttons/SquareButton/SquareButton'
+
 import './header.css';
 import Logo from '../Logo/Logo';
 
@@ -12,8 +14,10 @@ import Logo from '../Logo/Logo';
 function Header({ onMovies, onSavedMovies, onProfile, onMenu, onRegister, onSignin }) {
   const { isLoading } = React.useContext(LoadingContext);
   const currentUser = React.useContext(CurrentUserContext);
+  const location = useLocation().pathname;
   const { onMoviesClick, onSavedMoviesClick, onProfileClick, onMenuClick, onRegisterClick, onSigninClick } = React.useContext(NavigateContext);
-  const isLoggedIn = currentUser._id;
+  const isLoggedIn = currentUser.email;
+
   return (
     <header className='header'>
       <Logo
@@ -22,12 +26,12 @@ function Header({ onMovies, onSavedMovies, onProfile, onMenu, onRegister, onSign
       />
       {isLoggedIn && <div className='header__menu-placeholder'>
         <TransparentButton
-          mixinClassName='transparent-button_type_all-films'
+          mixinClassName={`transparent-button_type_standard ${location === '/movies' && 'transparent-button_type_standard-active'}`}
           btnText='Фильмы'
           onClick={onMoviesClick}
         />
         <TransparentButton
-          mixinClassName='transparent-button_type_standard'
+          mixinClassName={`transparent-button_type_standard ${location === '/saved-movies' && 'transparent-button_type_standard-active'}`}
           btnText='Сохраненные фильмы'
           onClick={onSavedMoviesClick}
         />

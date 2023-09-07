@@ -3,19 +3,24 @@ import AuthForm from "../../AuthForm/AuthForm";
 import CaptionedField from "../../Common/CaptionedField/CaptionedField";
 import useValidation from '../../../hooks/useValidation';
 import { NavigateContext } from "../../../contexts/NavigateContext";
+import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import './register.css';
 
-function RegisterPage({ onRegister, errorText }) {
+function RegisterPage({ onRegister, errorText, checkToken }) {
 
+  React.useEffect(() => { checkToken() }, []);
+  const currentUser = React.useContext(CurrentUserContext);
   const validation = useValidation();
-
   const { onSigninClick } = React.useContext(NavigateContext);
 
-  function handleSubmit() {
+
+
+  function handleSubmit(e) {
+    e.preventDefault();
     onRegister({ name: validation.values.name, email: validation.values.email, password: validation.values.password });
   }
 
-  return (
+  return (currentUser.email ?
     <AuthForm
       name='register'
       title='Добро пожаловать!'
@@ -57,6 +62,7 @@ function RegisterPage({ onRegister, errorText }) {
 
       </fieldset>
     </AuthForm>
+    : <div></div>
   );
 }
 export default RegisterPage;

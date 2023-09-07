@@ -1,14 +1,19 @@
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import Movies from "../../MovieLists/Movies/Movies";
+import './movies-page.css'
 
 
 
-function MoviesPage() {
+function MoviesPage({ errorText, setLoading, setError }) {
   return (
-    <div>
+    <div className="movies-page">
       <Header />
-      <Movies />
+      <Movies
+        errorText={errorText}
+        setLoading={setLoading}
+        setError={setError}
+      />
       <Footer />
     </div>
   );
