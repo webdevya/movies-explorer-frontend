@@ -4,6 +4,7 @@ import useValidation from '../../../hooks/useValidation';
 import './login.css';
 import { NavigateContext } from "../../../contexts/NavigateContext";
 import React from "react";
+import { emailInputTitle } from '../../../utils/consts';
 
 function LoginPage({ onLogin, errorText, checkToken }) {
 
@@ -39,6 +40,7 @@ function LoginPage({ onLogin, errorText, checkToken }) {
           errorText={validation.errors.email}
           onChange={validation.handleChange}
           type='email'
+          title={emailInputTitle}
         />
         <CaptionedField
           caption='Пароль'

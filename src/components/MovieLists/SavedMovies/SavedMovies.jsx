@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SavedCardButtons from '../MovieButtons/SavedCardButtons/SavedCardButtons';
 
 
-function SavedMovies({ errorText }) {
+function SavedMovies({ errorText, setLoading, setError }) {
 
   const currentMovies = React.useContext(CurrentMoviesContext);
   function onSearch({ name }) {

@@ -4,6 +4,7 @@ import useValidation from '../../hooks/useValidation';
 import './profile.css';
 import SquareButton from '../Common/Buttons/SquareButton/SquareButton';
 import TransparentButton from '../Common/Buttons/TransparentButton/TransparentButton';
+import { emailInputTitle, nameInputTitle, nameRegex } from '../../utils/consts';
 
 
 function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) {
@@ -39,15 +40,18 @@ function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) 
 
             <label className="profile__field profile__field_underlined">
               <span className="profile__field-caption">Имя</span>
-              <input type="text" className={`profile__input ${validation.errors.name && validation.errors.name.length > 0 && "profile__input_type_error"}`} placeholder="Имя" id="profile-input-name" name="name"
-                required={true} onChange={validation.handleChange} value={validation.values.name ? validation.values.name : ''} disabled={!isEditMode} />
+              <input type="text" className={`profile__input ${validation.errors.name && validation.errors.name.length > 0 && "profile__input_type_error"}`}
+                placeholder="Имя" id="profile-input-name" name="name" required={true} onChange={validation.handleChange}
+                value={validation.values.name ? validation.values.name : ''} disabled={!isEditMode}
+                pattern={nameRegex} title={nameInputTitle} />
               <span className="profile__error profile-input-name-error">{validation.errors.name && validation.errors.name}</span>
             </label>
 
             <label className="profile__field">
               <span className="profile__field-caption">E-mail</span>
-              <input type="email" className={`profile__input ${validation.errors.email && validation.errors.email.length > 0 && "profile__input_type_error"}`} placeholder="E-mail" id="profile-input-email" name="email"
-                required={true} onChange={validation.handleChange} value={validation.values.email ? validation.values.email : ''} disabled={!isEditMode} />
+              <input type="email" title={emailInputTitle} className={`profile__input ${validation.errors.email && validation.errors.email.length > 0 && "profile__input_type_error"}`}
+                placeholder="E-mail" id="profile-input-email" name="email" required={true} onChange={validation.handleChange}
+                value={validation.values.email ? validation.values.email : ''} disabled={!isEditMode} />
               <span className="profile__error profile-input-name-error">{validation.errors.email && validation.errors.email}</span>
             </label>
           </fieldset>

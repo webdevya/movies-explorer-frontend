@@ -6,33 +6,48 @@ export default function useMovies({ setLoading, setError }) {
 
   const [movies, setMovies] = React.useState(null);
 
+  const [isEmpty, setIsEmpty] = React.useState(true);
+
   function searchMovies(pattern) {
-    loadMovies();
-    const found = movies.filter(`/${pattern}/i`);
-    return found;
+
+    const lowPattern = pattern.toLowerCase();
+    return loadMovies().then(all => {
+      return all.filter(x => (x.nameRU ?? '').toLowerCase().includes(lowPattern) || (x.nameEN ?? '').toLowerCase().includes(lowPattern));
+    }).catch(err => { console.log(err); setError(err.message); })
   }
 
   function loadMovies() {
     if (movies === null) {
       if (localStorage.getItem('movies')) {
-        setMovies(localStorage.getItem('movies'));
-        return movies;
+        const stored = JSON.parse(localStorage.getItem('movies'));
+        setMovies(stored);
+        setIsEmpty(false);
+        return Promise.resolve(stored);
       }
       else {
         setLoading(true);
+
         return api.getMovies()
           .then((movies) => {
-            localStorage.setItem('movies');
+            localStorage.setItem('movies', JSON.stringify(movies));
             setMovies(movies);
+            setIsEmpty(false);
             return movies;
           })
           .catch(err => { console.log(err); setError(err.message); })
           .finally(() => setLoading(false));
       }
     }
-    else
-      return movies;
+    else {
+      setIsEmpty(false);
+      return Promise.resolve(movies);
+    }
   }
 
-  return { movies, searchMovies };
+  function clearMovies() {
+    if (localStorage.getItem('movies'))
+      localStorage.removeItem('movies');
+  }
+
+  return { isEmpty, searchMovies, clearMovies };
 }

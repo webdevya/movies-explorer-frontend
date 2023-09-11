@@ -17,7 +17,10 @@ import ProfilePage from '../Pages/ProfilePage/ProfilePage';
 import RegisterPage from '../Pages/RegisterPage/RegisterPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import MenuPopup from '../MenuPopup/MenuPopup';
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import useMovies from './../../hooks/useMovies'
+import useSavedState from "../../hooks/useSavedState";
+import { searchPropsName } from '../../utils/consts';
 
 function App() {
 
@@ -34,6 +37,8 @@ function App() {
     handleTokenCheck();
   }, [])
 
+  const searchSave = useSavedState(searchPropsName);
+  const moviesHandler = useMovies({ setLoading: setIsLoading, setError: setErrorText });
 
   function handleTokenCheck() {
 
@@ -72,6 +77,8 @@ function App() {
     if (localStorage.getItem('jwt'))
       localStorage.removeItem('jwt');
     setCurrentUser({});
+    searchSave.clearData();
+    moviesHandler.clearMovies();
     navigate('/', { replace: true });
   }
 
@@ -91,7 +98,8 @@ function App() {
     handleRequest(
       () => {
         return auth.signup({ name, email, password })
-          .then(() => navigate('/signin', { replace: true }))
+          //.then(() => navigate('/signin', { replace: true }))
+          .then(() => onLogin({ email, password }))
           .catch(err => { console.log(err); showError(err); });
       }, true);
   }
@@ -137,6 +145,7 @@ function App() {
   function NavigateFromMenu(route, replaceRoute = false) {
     navigate(route, { replace: replaceRoute });
     setIsMenuOpen(false);
+    setIsProfileEditMode(false);
   }
 
   function onMenuClick() {

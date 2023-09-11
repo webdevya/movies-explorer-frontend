@@ -4,22 +4,32 @@ import './search.css';
 import CheckThumb from '../../Common/CheckThumb/CheckThumb';
 import SquareButton from '../../Common/Buttons/SquareButton/SquareButton';
 
-function SearchForm({ onSearch }) {
+
+function SearchForm({ onSearch, onThumbChange, initName, initIsShort }) {
 
   const validation = useValidation();
-  const [isShort, setIsShort] = React.useState(false);
+  const [isShort, setIsShort] = React.useState(initIsShort);
 
   function handleCheckChanged(e) {
     setIsShort(e.target.checked);
+    onThumbChange(e.target.checked)
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
     onSearch({
-      name: validation.values.name
+      name: validation.values.name,
+      isShort: isShort
     });
   }
+
+  React.useEffect(() => {
+    validation.reset({
+      name: initName
+    })
+    setIsShort(initIsShort)
+  }, [initName, initIsShort]);
 
   return (
     <section className='search' alt="Фильтр по фильмам">
@@ -32,7 +42,6 @@ function SearchForm({ onSearch }) {
           disabled={!validation.isValid}
           type='submit'
         />
-        {/* <button type="submit" className={`search__form-submit-btn ${!validation.isValid && "search__form-submit-btn_disabled"}`} disabled={!validation.isValid}>Искать</button> */}
       </form>
       <div className='search__check-thumb-placeholder'>
         <CheckThumb

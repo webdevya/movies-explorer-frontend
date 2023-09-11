@@ -5,6 +5,7 @@ import useValidation from '../../../hooks/useValidation';
 import { NavigateContext } from "../../../contexts/NavigateContext";
 import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import './register.css';
+import { emailInputTitle, nameInputTitle, nameRegex } from '../../../utils/consts';
 
 function RegisterPage({ onRegister, errorText, checkToken }) {
 
@@ -20,7 +21,7 @@ function RegisterPage({ onRegister, errorText, checkToken }) {
     onRegister({ name: validation.values.name, email: validation.values.email, password: validation.values.password });
   }
 
-  return (currentUser.email ?
+  return (!currentUser.email ?
     <AuthForm
       name='register'
       title='Добро пожаловать!'
@@ -40,6 +41,8 @@ function RegisterPage({ onRegister, errorText, checkToken }) {
           value={validation.values.name}
           errorText={validation.errors.name}
           onChange={validation.handleChange}
+          pattern={nameRegex}
+          title={nameInputTitle}
         />
         <CaptionedField
           caption='E-mail'
@@ -49,6 +52,7 @@ function RegisterPage({ onRegister, errorText, checkToken }) {
           errorText={validation.errors.email}
           onChange={validation.handleChange}
           type='email'
+          title={emailInputTitle}
         />
         <CaptionedField
           caption='Пароль'
