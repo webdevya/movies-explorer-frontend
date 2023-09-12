@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SavedCardButtons from '../MovieButtons/SavedCardButtons/SavedCardButtons';
 import SavedCardViewModel from '../../../viewmodels/SavedCardViewModel';
+import { shortMovieMaxDuration } from '../../../utils/consts';
 
 
 function SavedMovies({ errorText, setLoading, setError, toggleLike }) {
@@ -31,7 +32,7 @@ function SavedMovies({ errorText, setLoading, setError, toggleLike }) {
   function checkIsShort(movie, isShort) {
     if (!isShort)
       return true;
-    return movie.duration <= 40;
+    return movie.duration <= shortMovieMaxDuration;
   }
 
   function onSearch({ name, isShort }) {

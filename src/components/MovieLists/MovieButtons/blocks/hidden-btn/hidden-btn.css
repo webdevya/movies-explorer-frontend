@@ -2,3 +2,9 @@
   opacity: 0;
   transition: visibility .5s, opacity .5s ease;
 }
+
+@media screen and (max-width: 1023px) {
+  .hidden-btn {
+    opacity: 1;
+  }
+}

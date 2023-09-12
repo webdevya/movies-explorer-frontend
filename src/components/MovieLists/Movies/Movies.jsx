@@ -11,7 +11,10 @@ import useWindowWidth from '../../../hooks/useWindowWidth';
 import {
   cardInitCount1280,
   cardInitCount768,
-  cardInitCount320
+  cardInitCount320,
+  brakeWidth1280,
+  brakeWidth768,
+  shortMovieMaxDuration
 } from '../../../utils/consts';
 import CardViewModel from '../../../viewmodels/CardViewModel';
 import { SavedMoviesContext } from '../../../contexts/SavedMoviesContext';
@@ -49,8 +52,8 @@ function Movies({ errorText, setLoading, setError, toggleLike }) {
 
   function setCalculatedCardsCount(width, more) {
 
-    const cnt = width >= 1279 ? calculateCountsByConsts(cardInitCount1280, more) :
-      width >= 767 ? calculateCountsByConsts(cardInitCount768, more) :
+    const cnt = width >= brakeWidth1280 ? calculateCountsByConsts(cardInitCount1280, more) :
+      width >= brakeWidth768 ? calculateCountsByConsts(cardInitCount768, more) :
         calculateCountsByConsts(cardInitCount320, more);
 
     setCurrentMoviesCount(cnt);
@@ -82,7 +85,7 @@ function Movies({ errorText, setLoading, setError, toggleLike }) {
   function filterShownMovies(movies, isShort, moviesCount) {
     if (!movies)
       return;
-    const filtered = (isShort ? movies.filter(x => x.duration <= 40) : movies);
+    const filtered = (isShort ? movies.filter(x => x.duration <= shortMovieMaxDuration) : movies);
     const viewmodels = filtered.slice(0, moviesCount).map(x => new CardViewModel({ card: x, savedId: findSavedId(x.id) }));
     setShownMovies(viewmodels);
     setIsShowMore(filtered.length > viewmodels.length);

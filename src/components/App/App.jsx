@@ -27,6 +27,7 @@ function App() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [errorText, setErrorText] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [isProfileEditMode, setIsProfileEditMode] = React.useState(false)
@@ -36,14 +37,15 @@ function App() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    handleTokenCheck();
+
+    handleTokenCheck(false);
   }, [])
 
   const searchSave = useSavedState(searchPropsName);
   const moviesHook = useMovies({ setLoading: setIsLoading, setError: setErrorText });
   const profileInformer = useHidingText(hidingPeriod)
 
-  function handleTokenCheck() {
+  function handleTokenCheck(navigateAfterCheck = true) {
 
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
@@ -56,13 +58,16 @@ function App() {
             ]
           ).then(([user, movies]) => {
             setCurrentUser(user);
+            setIsLoggedIn(user.email);
             setSavedMovies(movies);
           })
-            .then(() => navigate("/movies", { replace: true }))
-            .catch(err => { console.log(err && err.message); showError(err); });
+            .then(() => navigateAfterCheck && navigate("/movies", { replace: true }))
+            .catch(err => { setIsLoggedIn(false); console.log(err && err.message); showError(err); });
         })
-        .catch(err => { console.log(err && err.message); showError(err); });
+        .catch(err => { setIsLoggedIn(false); console.log(err && err.message); showError(); });
     }
+    else
+      setIsLoggedIn(false);
   }
 
   function closeMenu() {
@@ -184,6 +189,7 @@ function App() {
     navigate(route, { replace: replaceRoute });
     setIsMenuOpen(false);
     setIsProfileEditMode(false);
+    setErrorText('');
   }
 
   function onMenuClick() {
@@ -206,7 +212,7 @@ function App() {
                   path="/movies"
                   element={
                     <ProtectedRoute element={MoviesPage}
-                      loggedIn={currentUser.email}
+                      loggedIn={isLoggedIn}//{currentUser.email}
                       errorText={errorText}
                       setLoading={setIsLoading}
                       setError={setErrorText}
@@ -218,7 +224,7 @@ function App() {
                   path="/saved-movies"
                   element={
                     <ProtectedRoute element={SavedMoviesPage}
-                      loggedIn={currentUser.email}
+                      loggedIn={isLoggedIn}//{currentUser.email}
                       errorText={errorText}
                       toggleLike={onToggleLike}
                     />
@@ -228,7 +234,7 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute element={ProfilePage}
-                      loggedIn={currentUser.email}
+                      loggedIn={isLoggedIn}//{currentUser.email}
                       onProfileUpdate={onProfileUpdate}
                       onProfileExit={onProfileExit}
                       isEditMode={isProfileEditMode}
