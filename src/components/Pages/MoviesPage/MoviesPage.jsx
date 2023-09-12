@@ -5,7 +5,7 @@ import './movies-page.css'
 
 
 
-function MoviesPage({ errorText, setLoading, setError }) {
+function MoviesPage({ errorText, setLoading, setError, toggleLike }) {
   return (
     <div className="movies-page">
       <Header />
@@ -13,6 +13,7 @@ function MoviesPage({ errorText, setLoading, setError }) {
         errorText={errorText}
         setLoading={setLoading}
         setError={setError}
+        toggleLike={toggleLike}
       />
       <Footer />
     </div>

@@ -14,8 +14,9 @@ import {
   cardInitCount320
 } from '../../../utils/consts';
 import CardViewModel from '../../../viewmodels/CardViewModel';
+import { SavedMoviesContext } from '../../../contexts/SavedMoviesContext';
 
-function Movies({ errorText, setLoading, setError }) {
+function Movies({ errorText, setLoading, setError, toggleLike }) {
 
   const searchSave = useSavedState(searchPropsName);
   const movieHandler = useMovies({ setLoading, setError });
@@ -25,9 +26,9 @@ function Movies({ errorText, setLoading, setError }) {
   const [shownMovies, setShownMovies] = React.useState(null);
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [currentMoviesCount, setCurrentMoviesCount] = React.useState(0);
-  // const [moreTimes, setMoreTimes] = React.useState(0);
-  // const [isShort, setIsShort] = React.useState(false);
   const [searchParams, setSearchParams] = React.useState({ moreTimes: 0 });
+
+  const savedMovies = React.useContext(SavedMoviesContext);
 
 
   React.useEffect(() => {
@@ -77,10 +78,18 @@ function Movies({ errorText, setLoading, setError }) {
     if (!movies)
       return;
     const filtered = (isShort ? movies.filter(x => x.duration <= 40) : movies);
-    const viewmodels = filtered.slice(0, moviesCount).map(x => new CardViewModel({ card: x, isLiked: false }));
+    const viewmodels = filtered.slice(0, moviesCount).map(x => new CardViewModel({ card: x, savedId: findSavedId(x.id) }));
     setShownMovies(viewmodels);
     setIsShowMore(filtered.length > viewmodels.length);
 
+  }
+
+  function findSavedId(movieId) {
+    if (!savedMovies || savedMovies.length === 0)
+      return null;
+    if (!savedMovies.some(x => x.movieId === movieId))
+      return null;
+    return savedMovies.find(x => x.movieId === movieId)._id;
   }
 
   function onThumbChange(isShort) {
@@ -89,19 +98,13 @@ function Movies({ errorText, setLoading, setError }) {
     saveSearchParams(props);
     const cnt = setCalculatedCardsCount(useWidth.width, props.moreTimes);
     setCurrentMoviesCount(cnt);
-
-    //filterShownMovies(foundMovies, isShort, cnt);
   }
 
-  function onCardLike(card) {
-    console.log(card);
-  }
 
   function onShowMore() {
     const props = { ...searchParams, moreTimes: searchParams.moreTimes + 1 };
     saveSearchParams(props);
-    const currCnt = setCalculatedCardsCount(useWidth.width, props.moreTimes);
-    //filterShownMovies(foundMovies, searchParams.isShort, currCnt);
+    setCalculatedCardsCount(useWidth.width, props.moreTimes);
   }
 
   function saveSearchParams(props) {
@@ -126,7 +129,7 @@ function Movies({ errorText, setLoading, setError }) {
         initIsShort={searchParams.isShort}
       />
       <MoviesCardList
-        onCardLike={onCardLike}
+        onCardLike={toggleLike}
         cards={shownMovies}
         cardButtons={cardButtons}
         errorText={errorText}

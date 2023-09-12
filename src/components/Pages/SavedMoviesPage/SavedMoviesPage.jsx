@@ -5,12 +5,13 @@ import SavedMovies from "../../MovieLists/SavedMovies/SavedMovies";
 
 
 
-function SavedMoviesPage({ errorText }) {
+function SavedMoviesPage({ errorText, toggleLike }) {
   return (
     <div >
       <Header />
       <SavedMovies
         errorText={errorText}
+        toggleLike={toggleLike}
       />
       <Footer />
     </div>

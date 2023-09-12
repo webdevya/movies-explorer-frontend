@@ -1,12 +1,10 @@
 import { api } from "../../utils/Api.js";
-import { auth } from "../../utils/Auth";
-
+import { auth } from "../../utils/Auth"
 import React from 'react';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-// import ProtectedRoute from "../../utils/ProtectedRoute.jsx";
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
-import { CurrentMoviesContext } from '../../contexts/CurrentMoviesContext';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import { NavigateContext } from '../../contexts/NavigateContext';
 
 import LandingPage from '../Pages/LandingPage/LandingPage';
@@ -21,6 +19,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import useMovies from './../../hooks/useMovies'
 import useSavedState from "../../hooks/useSavedState";
 import { searchPropsName } from '../../utils/consts';
+import { ConvertToSavedMovieModel } from '../../utils/movieConverter';
 
 function App() {
 
@@ -29,7 +28,7 @@ function App() {
   const [errorText, setErrorText] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [isProfileEditMode, setIsProfileEditMode] = React.useState(false)
-  const [currentMovies, setCurrentMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
 
   const navigate = useNavigate();
 
@@ -38,7 +37,7 @@ function App() {
   }, [])
 
   const searchSave = useSavedState(searchPropsName);
-  const moviesHandler = useMovies({ setLoading: setIsLoading, setError: setErrorText });
+  const moviesHook = useMovies({ setLoading: setIsLoading, setError: setErrorText });
 
   function handleTokenCheck() {
 
@@ -47,12 +46,24 @@ function App() {
 
       auth.checkToken(jwt)
         .then(() => {
-          return api.getUserInfo()
-            .then((user) => setCurrentUser(user))
+          return Promise.all(
+            [api.getUserInfo(),
+            api.getAllMovies(),
+            ]
+          ).then(([user, movies]) => {
+            setCurrentUser(user);
+            setSavedMovies(movies);
+          })
             .then(() => navigate("/movies", { replace: true }))
-            .catch(err => { console.log(err); showError(); });
+            .catch(err => { console.log(err.message); showError(); });
+
+
+          // api.getUserInfo()
+          // .then((user) => setCurrentUser(user))
+          // .then(() => navigate("/movies", { replace: true }))
+          // .catch(err => { console.log(err); showError(); });
         })
-        .catch(err => { console.log(err); showError(); });
+        .catch(err => { console.log(err.message); showError(); });
     }
   }
 
@@ -67,7 +78,7 @@ function App() {
             setCurrentUser(user);
             setIsProfileEditMode(false);
           })
-          .catch(err => { console.log(err); showError(); });
+          .catch(err => { console.log(err.message); showError(); });
       });
 
   }
@@ -78,19 +89,19 @@ function App() {
       localStorage.removeItem('jwt');
     setCurrentUser({});
     searchSave.clearData();
-    moviesHandler.clearMovies();
+    moviesHook.clearMovies();
     navigate('/', { replace: true });
   }
 
   function showError(error) {
-    setErrorText(error);
+    setErrorText(error.message);
   }
 
   function handleRequest(request, hideError = false) {
     setErrorText('');
     setIsLoading(true);
     request()
-      .catch(err => { console.log(err); showError(err); })
+      .catch(err => { console.log(err.message); showError(err); })
       .finally(() => setIsLoading(false));
   }
 
@@ -100,7 +111,7 @@ function App() {
         return auth.signup({ name, email, password })
           //.then(() => navigate('/signin', { replace: true }))
           .then(() => onLogin({ email, password }))
-          .catch(err => { console.log(err); showError(err); });
+          .catch(err => { console.log(err.message); showError(err); });
       }, true);
   }
 
@@ -114,8 +125,36 @@ function App() {
             }
           })
           .then(() => handleTokenCheck())
-          .catch(err => { console.log(err); showError(err); });
+          .catch(err => { console.log(err.message); showError(err); });
       }, true);
+  }
+
+  function onToggleLike(card) {
+    if (card.isLiked) {
+      handleRequest(
+        () => {
+          return api.deleteMovie(card.savedId)
+            .then(() => {
+              setSavedMovies(savedMovies.filter(x => x._id !== card.savedId));
+              card.setSaved(null);
+              return card;
+            })
+            .catch(err => { console.log(err.message); showError(err); });
+        }, false);
+    }
+    else {
+      const savedModel = ConvertToSavedMovieModel(card.movie);
+      handleRequest(
+        () => {
+          return api.saveMovie(savedModel)
+            .then((res) => {
+              card.setSaved(res._id);
+              setSavedMovies([res, ...savedMovies]);
+              return card;
+            })
+            .catch(err => { console.log(err.message); showError(err); });
+        }, false);
+    }
   }
 
   function onSigninClick() {
@@ -155,7 +194,7 @@ function App() {
   return (
     <LoadingContext.Provider value={{ isLoading }}>
       <CurrentUserContext.Provider value={currentUser}>
-        <CurrentMoviesContext.Provider value={currentMovies}>
+        <SavedMoviesContext.Provider value={savedMovies}>
           <NavigateContext.Provider value={{ onMainClick, onMoviesClick, onSavedMoviesClick, onProfileClick, onMenuClick, onRegisterClick, onSigninClick }}>
             <div className="page">
               <Routes>
@@ -172,6 +211,7 @@ function App() {
                       errorText={errorText}
                       setLoading={setIsLoading}
                       setError={setErrorText}
+                      toggleLike={onToggleLike}
                     />
                   } />
 
@@ -181,6 +221,7 @@ function App() {
                     <ProtectedRoute element={SavedMoviesPage}
                       loggedIn={currentUser.email}
                       errorText={errorText}
+                      toggleLike={onToggleLike}
                     />
                   } />
 
@@ -225,7 +266,7 @@ function App() {
               />
             </div>
           </NavigateContext.Provider>
-        </CurrentMoviesContext.Provider>
+        </SavedMoviesContext.Provider>
       </CurrentUserContext.Provider>
     </LoadingContext.Provider>
   );

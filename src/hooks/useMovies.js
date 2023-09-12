@@ -13,7 +13,7 @@ export default function useMovies({ setLoading, setError }) {
     const lowPattern = pattern.toLowerCase();
     return loadMovies().then(all => {
       return all.filter(x => (x.nameRU ?? '').toLowerCase().includes(lowPattern) || (x.nameEN ?? '').toLowerCase().includes(lowPattern));
-    }).catch(err => { console.log(err); setError(err.message); })
+    }).catch(err => { console.log(err.message); setError(err.message); })
   }
 
   function loadMovies() {
@@ -34,7 +34,7 @@ export default function useMovies({ setLoading, setError }) {
             setIsEmpty(false);
             return movies;
           })
-          .catch(err => { console.log(err); setError(err.message); })
+          .catch(err => { console.log(err.message); setError(err.message); })
           .finally(() => setLoading(false));
       }
     }

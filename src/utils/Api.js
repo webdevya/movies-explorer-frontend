@@ -5,17 +5,22 @@ import ApiBase from "./ApiBase";
 class Api extends ApiBase {
   constructor({ baseUrl,
     headers,
-  }, { cardLocalUrl, cardLikeLocalUrl, userLocalUrl, userAvatarLocalUrl }) {
+  }, { userLocalUrl, moviesLocalUrl }) {
     super({ baseUrl, headers });
-    this._cardLocalUrl = cardLocalUrl;
-    this._cardLikeLocalUrl = cardLikeLocalUrl;
+
+    //this._cardLikeLocalUrl = cardLikeLocalUrl;
     this._userLocalUrl = userLocalUrl;
-    this._userAvatarLocalUrl = userAvatarLocalUrl;
+
+    this._moviesLocalUrl = moviesLocalUrl;
   }
 
   // getInitialCards() {
   //   return super.getDataJson(this._cardLocalUrl, true);
   // }
+
+  getAllMovies() {
+    return super.getDataJson(this._moviesLocalUrl, true);
+  }
 
   getUserInfo() {
     return super.getDataJson(this._userLocalUrl, true);
@@ -23,6 +28,14 @@ class Api extends ApiBase {
 
   updateUserProps(userProps) {
     return super.updateData(this._userLocalUrl, userProps, null, true);
+  }
+
+  saveMovie(movie) {
+    return super.addData(this._moviesLocalUrl, movie, true);
+  }
+
+  deleteMovie(movieId) {
+    return super.deleteData(this._moviesLocalUrl, movieId, true);
   }
 
   // updateUserAvatar(avatar) {
@@ -50,7 +63,7 @@ class Api extends ApiBase {
   // }
 }
 // const localUrls = { cardLocalUrl: 'cards', cardLikeLocalUrl: 'likes', userLocalUrl: 'users/me', userAvatarLocalUrl: 'users/me/avatar' }
-const localUrls = { userLocalUrl: 'users/me' }
+const localUrls = { userLocalUrl: 'users/me', moviesLocalUrl: 'movies' }
 
 const api = new Api({
   baseUrl: 'http://localhost:3002/',
