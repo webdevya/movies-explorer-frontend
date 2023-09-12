@@ -20,6 +20,8 @@ import useMovies from './../../hooks/useMovies'
 import useSavedState from "../../hooks/useSavedState";
 import { searchPropsName } from '../../utils/consts';
 import { ConvertToSavedMovieModel } from '../../utils/movieConverter';
+import useHidingText from '../../hooks/useHidingText';
+import { hidingPeriod } from '../../utils/consts';
 
 function App() {
 
@@ -29,6 +31,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isProfileEditMode, setIsProfileEditMode] = React.useState(false)
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [profileInfoText, setProfileInfoText] = React.useState('');
 
   const navigate = useNavigate();
 
@@ -38,6 +41,7 @@ function App() {
 
   const searchSave = useSavedState(searchPropsName);
   const moviesHook = useMovies({ setLoading: setIsLoading, setError: setErrorText });
+  const profileInformer = useHidingText(hidingPeriod)
 
   function handleTokenCheck() {
 
@@ -56,12 +60,6 @@ function App() {
           })
             .then(() => navigate("/movies", { replace: true }))
             .catch(err => { console.log(err.message); showError(); });
-
-
-          // api.getUserInfo()
-          // .then((user) => setCurrentUser(user))
-          // .then(() => navigate("/movies", { replace: true }))
-          // .catch(err => { console.log(err); showError(); });
         })
         .catch(err => { console.log(err.message); showError(); });
     }
@@ -77,8 +75,9 @@ function App() {
           .then((user) => {
             setCurrentUser(user);
             setIsProfileEditMode(false);
+            profileInformer.setText({ setter: setProfileInfoText, text: 'Данные обновлены' });
           })
-          .catch(err => { console.log(err.message); showError(); });
+          .catch(err => { console.log(err.message); showError(err); });
       });
 
   }
@@ -234,6 +233,8 @@ function App() {
                       onProfileExit={onProfileExit}
                       isEditMode={isProfileEditMode}
                       setIsEditMode={setIsProfileEditMode}
+                      errorText={errorText}
+                      infoText={profileInfoText}
                     />
                   } />
 

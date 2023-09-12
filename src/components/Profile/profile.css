@@ -9,6 +9,7 @@
 @import url(./__error/profile__error.css);
 @import url(./__buttons/profile__buttons.css);
 @import url(./__info/profile__info.css);
+@import url(./info-text/profile__info-text.css);
 
 
 .profile {

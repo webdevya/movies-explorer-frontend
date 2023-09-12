@@ -9,6 +9,8 @@ const cardInitCount320 = { countRows: 5, countCols: 1, countAddRow: 2 };
 
 const beatFilmsBaseUrl = 'https://api.nomoreparties.co';
 
+const hidingPeriod = 3000;
+
 export {
   searchPropsName,
   emailInputTitle,
@@ -17,5 +19,6 @@ export {
   cardInitCount1280,
   cardInitCount768,
   cardInitCount320,
-  beatFilmsBaseUrl
+  beatFilmsBaseUrl,
+  hidingPeriod
 }

@@ -7,10 +7,11 @@ import TransparentButton from '../Common/Buttons/TransparentButton/TransparentBu
 import { emailInputTitle, nameInputTitle, nameRegex } from '../../utils/consts';
 
 
-function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) {
+function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode, errorText, infoText }) {
 
   const validation = useValidation();
   const currentUser = React.useContext(CurrentUserContext);
+
   function handleEditProfile() {
     setIsEditMode(true);
   }
@@ -55,6 +56,8 @@ function Profile({ onProfileUpdate, onProfileExit, isEditMode, setIsEditMode }) 
               <span className="profile__error profile-input-name-error">{validation.errors.email && validation.errors.email}</span>
             </label>
           </fieldset>
+          <p className='profile__error'>{errorText}</p>
+          <p className='profile__info-text'>{infoText}</p>
           {isEditMode && <SquareButton
             mixinClassName={`square-button_type_wide-blue ${!validation.isValid && 'square-button_disabled'}`}
             btnText="Сохранить"
