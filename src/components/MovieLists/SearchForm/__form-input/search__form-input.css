@@ -61,3 +61,45 @@
   font-weight: 400;
   line-height: 18px;
 }
+
+
+
+.search__form-input_error::placeholder {
+  color: #EE3465;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+
+.search__form-input_error::-webkit-input-placeholder {
+  color: #EE3465;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+
+
+.search__form-input_error::-moz-placeholder {
+  color: #EE3465;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+
+.search__form-input_error::-ms-input-placeholder {
+  color: #EE3465;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}

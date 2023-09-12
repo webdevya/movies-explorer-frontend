@@ -5,7 +5,7 @@ import CheckThumb from '../../Common/CheckThumb/CheckThumb';
 import SquareButton from '../../Common/Buttons/SquareButton/SquareButton';
 
 
-function SearchForm({ onSearch, onThumbChange, initName, initIsShort }) {
+function SearchForm({ onSearch, onThumbChange, initName, initIsShort, isError }) {
 
   const validation = useValidation();
   const [isShort, setIsShort] = React.useState(initIsShort);
@@ -34,12 +34,12 @@ function SearchForm({ onSearch, onThumbChange, initName, initIsShort }) {
   return (
     <section className='search' alt="Фильтр по фильмам">
       <form className="search__form" name="search-form" onSubmit={handleSubmit} noValidate={true}>
-        <input type="text" className="search__form-input" placeholder="Фильм" id="search-form-input" name="name"
-          required={true} onChange={validation.handleChange} value={validation.values.name ? validation.values.name : ''} />
+        <input type="text" className={`search__form-input ${isError && 'search__form-input_error'}`} placeholder={`${isError ? 'Нужно ввести ключевое слово' : 'Фильм'}`} id="search-form-input" name="name"
+          onChange={validation.handleChange} value={validation.values.name ? validation.values.name : ''} />
         <SquareButton
           mixinClassName={`square-button_type_submit-image  ${!validation.isValid && "square-button_type_submit-image-disbled"}`}
           btnText=''
-          disabled={!validation.isValid}
+          //disabled={!validation.isValid}
           type='submit'
         />
       </form>

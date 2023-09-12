@@ -27,9 +27,9 @@ function Movies({ errorText, setLoading, setError, toggleLike }) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [currentMoviesCount, setCurrentMoviesCount] = React.useState(0);
   const [searchParams, setSearchParams] = React.useState({ moreTimes: 0 });
+  const [isSearchError, setIsSearchError] = React.useState(false);
 
   const savedMovies = React.useContext(SavedMoviesContext);
-
 
   React.useEffect(() => {
     const props = searchSave.getData();
@@ -64,7 +64,12 @@ function Movies({ errorText, setLoading, setError, toggleLike }) {
   }
 
   function onSearch({ name, isShort }) {
+    if (!name || name.length === 0) {
+      setIsSearchError(true);
+      return;
+    }
 
+    setIsSearchError(false);
     const props = { ...searchParams, name: name, isShort: isShort, moreTimes: 0 };
     saveSearchParams(props);
     const cnt = setCalculatedCardsCount(useWidth.width, searchParams.moreTimes);
@@ -127,6 +132,7 @@ function Movies({ errorText, setLoading, setError, toggleLike }) {
         onThumbChange={onThumbChange}
         initName={searchParams.name}
         initIsShort={searchParams.isShort}
+        isError={isSearchError}
       />
       <MoviesCardList
         onCardLike={toggleLike}
