@@ -66,7 +66,7 @@ class Api extends ApiBase {
 const localUrls = { userLocalUrl: 'users/me', moviesLocalUrl: 'movies' }
 
 const api = new Api({
-  baseUrl: 'http://localhost:3002/',
+  baseUrl: 'https://api.movies.webdevya.nomoreparties.co/',
   headers: {
     'Content-Type': 'application/json'
   }

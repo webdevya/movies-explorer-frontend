@@ -59,9 +59,9 @@ function App() {
             setSavedMovies(movies);
           })
             .then(() => navigate("/movies", { replace: true }))
-            .catch(err => { console.log(err.message); showError(); });
+            .catch(err => { console.log(err && err.message); showError(err); });
         })
-        .catch(err => { console.log(err.message); showError(); });
+        .catch(err => { console.log(err && err.message); showError(err); });
     }
   }
 
@@ -93,14 +93,14 @@ function App() {
   }
 
   function showError(error) {
-    setErrorText(error.message);
+    setErrorText(error && error.message);
   }
 
   function handleRequest(request, hideError = false) {
     setErrorText('');
     setIsLoading(true);
     request()
-      .catch(err => { console.log(err.message); showError(err); })
+      .catch(err => { console.log(err && err.message); showError(err); })
       .finally(() => setIsLoading(false));
   }
 
@@ -110,7 +110,7 @@ function App() {
         return auth.signup({ name, email, password })
           //.then(() => navigate('/signin', { replace: true }))
           .then(() => onLogin({ email, password }))
-          .catch(err => { console.log(err.message); showError(err); });
+          .catch(err => { console.log(err && err.message); showError(err); });
       }, true);
   }
 
@@ -124,7 +124,7 @@ function App() {
             }
           })
           .then(() => handleTokenCheck())
-          .catch(err => { console.log(err.message); showError(err); });
+          .catch(err => { console.log(err && err.message); showError(err); });
       }, true);
   }
 
@@ -138,7 +138,7 @@ function App() {
               card.setSaved(null);
               return card;
             })
-            .catch(err => { console.log(err.message); showError(err); });
+            .catch(err => { console.log(err && err.message); showError(err); });
         }, false);
     }
     else {
@@ -151,7 +151,7 @@ function App() {
               setSavedMovies([res, ...savedMovies]);
               return card;
             })
-            .catch(err => { console.log(err.message); showError(err); });
+            .catch(err => { console.log(err && err.message); showError(err); });
         }, false);
     }
   }

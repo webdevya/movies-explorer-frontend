@@ -14,8 +14,8 @@ export default class RequestHandler {
   }
 
   handleError(error) {
-    console.log(error.message);
-    this.setErrorText(error.message);
+    console.log(error && error.message);
+    this.setErrorText(error && error.message);
   }
 
 }

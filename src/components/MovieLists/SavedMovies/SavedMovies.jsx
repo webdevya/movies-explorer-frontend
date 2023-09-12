@@ -15,7 +15,7 @@ function SavedMovies({ errorText, setLoading, setError, toggleLike }) {
   const [filter, setFilter] = React.useState({ name: '', isShort: false });
 
   React.useEffect(() => {
-    console.log(currentMovies.length);
+
     const filtered = !currentMovies || currentMovies.length === 0 ? [] :
       currentMovies.filter(x => checkName(x, filter.name) && checkIsShort(x, filter.isShort))
     setShownMovies(filtered.map(x => new SavedCardViewModel({ card: x })))
