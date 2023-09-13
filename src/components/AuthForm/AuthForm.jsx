@@ -17,9 +17,9 @@ function AuthForm({ name, title, submitText, additionalText, additionalBtnText, 
         {children}
         <p className='auth-form__error-text'>{errorText}</p>
         <SquareButton
-          mixinClassName={`square-button_type_wide-blue auth-form-save-btn-placeholder ${!isValid && 'square-button_disabled'}`}
+          mixinClassName={`square-button_type_wide-blue auth-form-save-btn-placeholder ${(!isValid || isLoading) && 'square-button_disabled'}`}
           btnText={submitText}
-          disabled={!isValid}
+          disabled={!isValid || isLoading}
           type='submit'
         />
       </form>

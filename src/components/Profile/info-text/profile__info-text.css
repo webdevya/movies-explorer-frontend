@@ -1,0 +1,11 @@
+.profile__info-text {
+  color: #fff;
+  text-align: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  justify-self: start;
+  display: block;
+  min-height: 15px;
+}

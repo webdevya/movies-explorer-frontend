@@ -1,23 +1,10 @@
-
-// import Main from './Main';
-// import ImagePopup from './ImagePopup';
-// import EditProfilePopup from './EditProfilePopup';
-// import AddPlacePopup from './AddPlacePopup';
-// import { api } from "../utils/Api.js";
-// import { auth } from "../utils/Auth.js";
-
+import { api } from "../../utils/Api.js";
+import { auth } from "../../utils/Auth"
 import React from 'react';
-//import { getIsUserLiked } from '../utils/likesHandler.js';
-//import EditAvatarPopup from './EditAvatarPopup';
-//import ConfirmPopup from './ConfirmPopup';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-//import ProtectedRoute from "../..utils/ProtectedRoute";
-//import Login from './Login';
-//import Register from './Register';
-//import InfoTooltip from './InfoTooltip';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
-import { CurrentMoviesContext } from '../../contexts/CurrentMoviesContext';
+import { SavedMoviesContext } from '../../contexts/SavedMoviesContext';
 import { NavigateContext } from '../../contexts/NavigateContext';
 
 import LandingPage from '../Pages/LandingPage/LandingPage';
@@ -28,167 +15,181 @@ import ProfilePage from '../Pages/ProfilePage/ProfilePage';
 import RegisterPage from '../Pages/RegisterPage/RegisterPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import MenuPopup from '../MenuPopup/MenuPopup';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import useMovies from './../../hooks/useMovies'
+import useSavedState from "../../hooks/useSavedState";
+import { searchPropsName } from '../../utils/consts';
+import { ConvertToSavedMovieModel } from '../../utils/movieConverter';
+import useHidingText from '../../hooks/useHidingText';
+import { hidingPeriod } from '../../utils/consts';
 
 function App() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [errorText, setErrorText] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [isProfileEditMode, setIsProfileEditMode] = React.useState(false)
-  const [currentMovies, setCurrentMovies] = React.useState([
-    {
-      "id": 1,
-      "nameRU": "«Роллинг Стоунз» в изгнании в изгнании в изгнании в изгнании",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/stones_in_exile_b2f1b8f4b7.jpeg"
-      }
-    },
-    {
-      "id": 2,
-      "nameRU": "All Tomorrow's Parties",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/all_tommoros_parties_33a125248d.jpeg"
-      }
-    },
-    {
-      "id": 3,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-    {
-      "id": 4,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 5,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 6,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 7,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 8,
-      "nameRU": "Bassweight",
-      "duration": "1ч 17м",
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/zagruzhennoe_113f557116.jpeg"
-      }
-    },
-    {
-      "id": 9,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-    {
-      "id": 10,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-    {
-      "id": 11,
-      "nameRU": " Без обратного пути",
-      "duration": "1ч 17м",
-      "isLiked": true,
-      "image": {
-        "url": "https://api.nomoreparties.co/uploads/blur_a43fcf463d.jpeg"
-      }
-    },
-  ])
+  const [savedMovies, setSavedMovies] = React.useState([]);
+  const [profileInfoText, setProfileInfoText] = React.useState('');
 
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+
+    handleTokenCheck(false);
+  }, [])
+
+  const searchSave = useSavedState(searchPropsName);
+  const moviesHook = useMovies({ setLoading: setIsLoading, setError: setErrorText });
+  const profileInformer = useHidingText(hidingPeriod)
+
+  function handleTokenCheck(navigateAfterCheck = true) {
+
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+
+      auth.checkToken(jwt)
+        .then(() => {
+          return Promise.all(
+            [api.getUserInfo(),
+            api.getAllMovies(),
+            ]
+          ).then(([user, movies]) => {
+            setCurrentUser(user);
+            setIsLoggedIn(user.email);
+            setSavedMovies(movies);
+          })
+            .then(() => navigateAfterCheck && navigate("/movies", { replace: true }))
+            .catch(err => { setIsLoggedIn(false); console.log(err && err.message); showError(err); });
+        })
+        .catch(err => { setIsLoggedIn(false); console.log(err && err.message); showError(); });
+    }
+    else
+      setIsLoggedIn(false);
+  }
 
   function closeMenu() {
     setIsMenuOpen(false);
   }
   function onProfileUpdate({ name, email }) {
-    setCurrentUser({ ...currentUser, name: name, email: email })
-    setIsProfileEditMode(false);
+    handleRequest(
+      () => {
+        return api.updateUserProps({ name, email })
+          .then((user) => {
+            setCurrentUser(user);
+            setIsProfileEditMode(false);
+            profileInformer.setText({ setter: setProfileInfoText, text: 'Данные обновлены' });
+          })
+          .catch(err => { console.log(err.message); showError(err); });
+      });
+
   }
 
+
   function onProfileExit() {
+    if (localStorage.getItem('jwt'))
+      localStorage.removeItem('jwt');
     setCurrentUser({});
+    searchSave.clearData();
+    moviesHook.clearMovies();
     navigate('/', { replace: true });
+  }
+
+  function showError(error) {
+    setErrorText(error && error.message);
+  }
+
+  function handleRequest(request, hideError = false) {
+    setErrorText('');
+    setIsLoading(true);
+    request()
+      .catch(err => { console.log(err && err.message); showError(err); })
+      .finally(() => setIsLoading(false));
   }
 
   function onRegister({ name, email, password }) {
-    console.log(name, email, password);
-    navigate('/signin', { replace: true });
+    handleRequest(
+      () => {
+        return auth.signup({ name, email, password })
+          //.then(() => navigate('/signin', { replace: true }))
+          .then(() => onLogin({ email, password }))
+          .catch(err => { console.log(err && err.message); showError(err); });
+      }, true);
   }
-
 
   function onLogin({ email, password }) {
-    setCurrentUser({ _id: 1, name: 'Прокопий', email: email, password: password })
-    navigate('/movies', { replace: true });
-    // Promise.resolve(setCurrentUser({ _id: 1, name: 'Прокопий', email: email, password: password }))
-    //   .then(() => { navigate('/movies', { replace: true }); });
-
+    handleRequest(
+      () => {
+        return auth.signin({ email, password })
+          .then((res) => {
+            if (res.token) {
+              return localStorage.setItem('jwt', res.token);
+            }
+          })
+          .then(() => handleTokenCheck())
+          .catch(err => { console.log(err && err.message); showError(err); });
+      }, true);
   }
+
+  function onToggleLike(card) {
+    if (card.isLiked) {
+      handleRequest(
+        () => {
+          return api.deleteMovie(card.savedId)
+            .then(() => {
+              setSavedMovies(savedMovies.filter(x => x._id !== card.savedId));
+              card.setSaved(null);
+              return card;
+            })
+            .catch(err => { console.log(err && err.message); showError(err); });
+        }, false);
+    }
+    else {
+      const savedModel = ConvertToSavedMovieModel(card.movie);
+      handleRequest(
+        () => {
+          return api.saveMovie(savedModel)
+            .then((res) => {
+              card.setSaved(res._id);
+              setSavedMovies([res, ...savedMovies]);
+              return card;
+            })
+            .catch(err => { console.log(err && err.message); showError(err); });
+        }, false);
+    }
+  }
+
   function onSigninClick() {
-    navigate('/signin', { replace: true });
-    setIsMenuOpen(false);
+    NavigateFromMenu('/signin', true);
   }
 
   function onRegisterClick() {
-    navigate('/signup', { replace: true });
-    setIsMenuOpen(false);
+    NavigateFromMenu('/signup', true);
   }
 
   function onMainClick() {
-    navigate('/', { replace: true });
-    setIsMenuOpen(false);
+    NavigateFromMenu('/');
   }
 
   function onMoviesClick() {
-    navigate('/movies', { replace: true });
-    setIsMenuOpen(false);
+    NavigateFromMenu('/movies');
   }
 
   function onSavedMoviesClick() {
-    navigate('/saved-movies', { replace: true });
-    setIsMenuOpen(false);
+    NavigateFromMenu('/saved-movies');
   }
 
   function onProfileClick() {
-    navigate('/profile', { replace: true });
+    NavigateFromMenu('/profile');
+  }
+
+  function NavigateFromMenu(route, replaceRoute = false) {
+    navigate(route, { replace: replaceRoute });
     setIsMenuOpen(false);
+    setIsProfileEditMode(false);
+    setErrorText('');
   }
 
   function onMenuClick() {
@@ -198,7 +199,7 @@ function App() {
   return (
     <LoadingContext.Provider value={{ isLoading }}>
       <CurrentUserContext.Provider value={currentUser}>
-        <CurrentMoviesContext.Provider value={currentMovies}>
+        <SavedMoviesContext.Provider value={savedMovies}>
           <NavigateContext.Provider value={{ onMainClick, onMoviesClick, onSavedMoviesClick, onProfileClick, onMenuClick, onRegisterClick, onSigninClick }}>
             <div className="page">
               <Routes>
@@ -206,38 +207,60 @@ function App() {
                   path="/"
                   element={<LandingPage />}
                 />
+
                 <Route
                   path="/movies"
-                  element={<MoviesPage />}
-                />
+                  element={
+                    <ProtectedRoute element={MoviesPage}
+                      loggedIn={isLoggedIn}//{currentUser.email}
+                      errorText={errorText}
+                      setLoading={setIsLoading}
+                      setError={setErrorText}
+                      toggleLike={onToggleLike}
+                    />
+                  } />
+
                 <Route
                   path="/saved-movies"
-                  element={<SavedMoviesPage />}
-                />
+                  element={
+                    <ProtectedRoute element={SavedMoviesPage}
+                      loggedIn={isLoggedIn}//{currentUser.email}
+                      errorText={errorText}
+                      toggleLike={onToggleLike}
+                    />
+                  } />
+
                 <Route
                   path="/profile"
-                  element={<ProfilePage
-                    onProfileUpdate={onProfileUpdate}
-                    onProfileExit={onProfileExit}
-                    isEditMode={isProfileEditMode}
-                    setIsEditMode={setIsProfileEditMode}
-                  />}
-                />
+                  element={
+                    <ProtectedRoute element={ProfilePage}
+                      loggedIn={isLoggedIn}//{currentUser.email}
+                      onProfileUpdate={onProfileUpdate}
+                      onProfileExit={onProfileExit}
+                      isEditMode={isProfileEditMode}
+                      setIsEditMode={setIsProfileEditMode}
+                      errorText={errorText}
+                      infoText={profileInfoText}
+                    />
+                  } />
+
                 <Route
                   path="/signup"
                   element={<RegisterPage
                     onRegister={onRegister}
                     errorText={errorText}
+                    checkToken={handleTokenCheck}
                   />}
 
                 />
+
                 <Route
                   path="/signin"
                   element={<LoginPage
                     onLogin={onLogin}
                     errorText={errorText}
+                    checkToken={handleTokenCheck}
                   />}
-
                 />
                 <Route
                   path="*"
@@ -250,7 +273,7 @@ function App() {
               />
             </div>
           </NavigateContext.Provider>
-        </CurrentMoviesContext.Provider>
+        </SavedMoviesContext.Provider>
       </CurrentUserContext.Provider>
     </LoadingContext.Provider>
   );

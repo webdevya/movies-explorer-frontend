@@ -11,8 +11,6 @@ function MenuPopup({ isOpen, onClose }) {
 
   usePopupClose(isOpen, onClose)
 
-  React.useEffect(() => { }, [isOpen]);
-
   const location = useLocation().pathname;
 
 

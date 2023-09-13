@@ -9,7 +9,11 @@
 
 ## Ссылки на проект
 
-Адрес репозитория https://github.com/webdevya/movies-explorer-frontend
-адрес репозитория бэкэнд: https://github.com/webdevya/movies-explorer-api
+* Адрес репозитория: https://github.com/webdevya/movies-explorer-frontend
+* Адрес репозитория бэкэнд: https://github.com/webdevya/movies-explorer-api
+* Адрес приложения: https://movies.webdevya.nomoreparties.co
+* Адрес бэкэнда: https://api.movies.webdevya.nomoreparties.co
+* pull request: https://github.com/webdevya/movies-explorer-frontend/pull/3
+
 
 ### макет: dark-2

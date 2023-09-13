@@ -4,14 +4,18 @@ import useValidation from '../../../hooks/useValidation';
 import './login.css';
 import { NavigateContext } from "../../../contexts/NavigateContext";
 import React from "react";
+import { emailInputTitle } from '../../../utils/consts';
 
-function LoginPage({ onLogin, errorText }) {
+function LoginPage({ onLogin, errorText, checkToken }) {
+
+  React.useEffect(() => { checkToken() }, []);
 
   const validation = useValidation();
 
   const { onRegisterClick } = React.useContext(NavigateContext);
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     onLogin({ email: validation.values.email, password: validation.values.password });
   }
 
@@ -36,6 +40,7 @@ function LoginPage({ onLogin, errorText }) {
           errorText={validation.errors.email}
           onChange={validation.handleChange}
           type='email'
+          title={emailInputTitle}
         />
         <CaptionedField
           caption='Пароль'
